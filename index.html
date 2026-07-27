@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>RV-10 Flight Tools</title>
+  
+  <!-- iOS PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RV10 Flight">
+  <meta name="theme-color" content="#09090b">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#09090b',
+              card: '#121215',
+              border: '#27272a',
+              left: '#3b82f6',
+              right: '#10b981'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Dynamic PWA Manifest Link -->
+  <link id="pwa-manifest" rel="manifest" href="">
+
+  <style>
+    /* Cockpit Touch Styles */
+    body {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      background-color: #09090b;
+      color: #f4f4f5;
+    }
+    
+    button {
+      touch-action: manipulation;
+      transition: transform 0.05s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
+    button:active {
+      transform: scale(0.96);
+    }
+    
+    /* Glow Effects */
+    .glow-left {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+      border-color: #3b82f6 !important;
+    }
+    .glow-right {
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+      border-color: #10b981 !important;
+    }
+    
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col justify-between p-3 md:p-5 font-sans select-none">
+
+  <!-- 1. TOP STATUS BAR (NON-SELECTABLE READOUTS) -->
+  <header class="w-full max-w-4xl mx-auto flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 mb-3">
+    <!-- GPS Speed Readout -->
+    <div id="gps-status-badge" class="flex items-center space-x-2 text-xs font-mono font-bold text-zinc-400">
+      <span id="gps-dot" class="w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block"></span>
+      <span id="gps-text">GPS: N/A</span>
+    </div>
+
+    <!-- Total Calculated Fuel Remaining -->
+    <div class="flex items-baseline space-x-1.5">
+      <span class="text-[10px] font-black uppercase text-zinc-400 tracking-wider">TOTAL FUEL:</span>
+      <span id="top-total-fuel" class="text-lg md:text-xl font-black font-mono text-zinc-100">60.0</span>
+      <span class="text-xs font-bold text-zinc-400 font-mono">GAL</span>
+    </div>
+
+    <!-- Active Feed Status Badge -->
+    <div class="flex items-center space-x-1.5">
+      <span class="text-[10px] font-black uppercase text-zinc-400 tracking-wider hidden sm:inline">ACTIVE FEED:</span>
+      <span id="top-active-badge" class="px-2.5 py-1 bg-blue-600 text-white font-black text-xs tracking-widest rounded-lg uppercase shadow-md animate-pulse">
+        LEFT TANK
+      </span>
+    </div>
+  </header>
+
+  <!-- 2. MAIN COCKPIT DASHBOARD (ZERO SCROLLING) -->
+  <main class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-between space-y-3">
+    
+    <!-- TANK GAUGES DISPLAY ZONE -->
+    <div class="grid grid-cols-2 gap-3 md:gap-4">
+      
+      <!-- LEFT TANK CARD -->
+      <div id="left-tank-card" class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-6 flex flex-col justify-between transition-all duration-300 relative">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="text-xs font-black tracking-widest text-blue-400 uppercase">Left Tank</span>
+            <p class="text-[10px] text-zinc-400">Pilot Side</p>
+          </div>
+          <span id="left-card-badge" class="px-2 py-0.5 bg-blue-600 text-white font-black text-[10px] tracking-widest rounded-md uppercase">FEEDING</span>
+        </div>
+
+        <div class="my-2">
+          <div class="flex items-baseline space-x-1">
+            <span id="left-tank-qty" class="text-4xl md:text-6xl font-black font-mono tracking-tight text-white">30.0</span>
+            <span class="text-lg font-bold text-zinc-400 font-mono">GAL</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div id="left-tank-bar" class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="flex justify-between text-xs text-zinc-400 font-mono">
+          <span>Capacity: 30.0 G</span>
+          <span id="left-burn-pct">100%</span>
+        </div>
+      </div>
+
+      <!-- RIGHT TANK CARD -->
+      <div id="right-tank-card" class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-6 flex flex-col justify-between transition-all duration-300 relative">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="text-xs font-black tracking-widest text-emerald-400 uppercase">Right Tank</span>
+            <p class="text-[10px] text-zinc-400">Co-Pilot Side</p>
+          </div>
+          <span id="right-card-badge" class="hidden px-2 py-0.5 bg-emerald-600 text-white font-black text-[10px] tracking-widest rounded-md uppercase">FEEDING</span>
+        </div>
+
+        <div class="my-2">
+          <div class="flex items-baseline space-x-1">
+            <span id="right-tank-qty" class="text-4xl md:text-6xl font-black font-mono tracking-tight text-white">30.0</span>
+            <span class="text-lg font-bold text-zinc-400 font-mono">GAL</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div id="right-tank-bar" class="bg-emerald-500 h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="flex justify-between text-xs text-zinc-400 font-mono">
+          <span>Capacity: 30.0 G</span>
+          <span id="right-burn-pct">100%</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRIMARY ACTION BUTTON: TANK MGMT -->
+    <button id="btn-open-switch-screen" onclick="triggerHaptic(40); openSwitchScreen();" 
+      class="w-full py-5 md:py-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-xl md:text-2xl font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-3 active:scale-[0.98]">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+      </svg>
+      <span>TANK MGMT</span>
+    </button>
+
+    <!-- FLIGHT SWITCH LOG ZONE -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-3.5 space-y-2 flex-1 flex flex-col justify-between">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-black uppercase tracking-wider text-zinc-300 flex items-center space-x-2">
+          <span>Flight Switch Log</span>
+          <span id="log-count-badge" class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 rounded-full font-mono text-[10px] text-zinc-400">0 events</span>
+        </h2>
+        
+        <!-- UNDO BUTTON -->
+        <button id="btn-undo-modal-trigger" onclick="triggerHaptic(20); openUndoModal();" class="hidden px-3 py-1 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-xs font-mono font-bold text-amber-400 rounded-lg flex items-center space-x-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+          <span>Undo Last...</span>
+        </button>
+      </div>
+
+      <!-- History Table -->
+      <div class="overflow-x-auto no-scrollbar rounded-xl border border-zinc-800 max-h-48">
+        <table class="w-full text-left font-mono text-xs">
+          <thead class="bg-zinc-950 text-zinc-400 uppercase text-[10px] tracking-wider border-b border-zinc-800 sticky top-0">
+            <tr>
+              <th class="p-2">Time (UTC)</th>
+              <th class="p-2">Tank</th>
+              <th class="p-2">EMS Total</th>
+              <th class="p-2">Left Qty</th>
+              <th class="p-2">Right Qty</th>
+              <th class="p-2">Seg Burn</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body" class="divide-y divide-zinc-800/60 bg-zinc-900/50 text-zinc-300">
+            <tr id="empty-history-row">
+              <td colspan="6" class="p-4 text-center text-zinc-500 italic">No tank switch events logged for this flight leg.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER READOUT -->
+  <footer class="w-full max-w-4xl mx-auto mt-3 text-center text-[10px] text-zinc-400 font-mono flex justify-between items-center px-1">
+    <div class="flex items-center space-x-2">
+      <span id="takeoff-timestamp-display">TAKEOFF: STANDING BY</span>
+      <span class="text-zinc-600">•</span>
+      <span id="flight-duration-display" class="text-amber-400 font-bold">FLIGHT TIME: 00h 00m</span>
+    </div>
+    <span>RV-10 FLIGHT TOOLS</span>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 3. FULL-SCREEN "TANK MGMT" OVERLAY -->
+  <!-- ========================================================================= -->
+  <div id="switch-tanks-screen" class="fixed inset-0 bg-zinc-950 z-40 hidden flex flex-col justify-between p-3 md:p-6 overflow-y-auto">
+    
+    <!-- STREAMLINED HEADER -->
+    <div class="flex items-center justify-between border-b border-zinc-800 pb-2 flex-shrink-0">
+      <div class="flex items-center space-x-2">
+        <span class="text-xs font-black uppercase text-zinc-400">PREV EMS:</span>
+        <strong id="switch-prev-ems" class="text-lg font-mono font-black text-amber-400">60.0 GAL</strong>
+      </div>
+
+      <!-- BACK / CLOSE BUTTON -->
+      <button onclick="triggerHaptic(20); closeSwitchScreen();" class="px-3.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center space-x-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <span>Back / Close</span>
+      </button>
+    </div>
+
+    <!-- Active Feed Selection Pills -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-2.5 my-1.5 flex-shrink-0">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-1 text-center">Selected Active Feed:</span>
+      <div class="grid grid-cols-2 gap-2">
+        <button id="switch-select-left" onclick="switchModalSelectTank('LEFT')" class="py-2 rounded-xl font-black text-sm uppercase transition-all bg-blue-600 text-white shadow-lg">
+          LEFT TANK (PILOT)
+        </button>
+        <button id="switch-select-right" onclick="switchModalSelectTank('RIGHT')" class="py-2 rounded-xl font-black text-sm uppercase transition-all text-zinc-400 hover:text-white bg-zinc-800 border border-zinc-700">
+          RIGHT TANK
+        </button>
+      </div>
+    </div>
+
+    <!-- HIGH-READABILITY DELTA & EMS INPUT CARD -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-3.5 space-y-3 my-auto flex-shrink-0">
+      
+      <!-- EQUALLY MASSIVE READOUTS: NEW EMS (LEFT) & DELTA BURNED (RIGHT) -->
+      <div class="grid grid-cols-2 gap-2 bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center font-mono">
+        <!-- New EMS Reading Input -->
+        <div class="flex flex-col items-center justify-center border-r border-zinc-800 pr-2">
+          <span class="text-[10px] font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">NEW EMS READING</span>
+          <div class="flex items-center space-x-1">
+            <input type="number" id="input-ems-number" step="0.1" min="0" max="60" 
+              class="w-32 bg-zinc-900 border-2 border-zinc-700 focus:border-amber-500 rounded-xl px-2 py-1 text-3xl font-mono font-black text-center text-amber-400 focus:outline-none" 
+              oninput="handleManualInput(this.value)">
+            <span class="text-xs font-bold text-zinc-400 font-mono">GAL</span>
+          </div>
+        </div>
+
+        <!-- Delta Burned Readout -->
+        <div class="flex flex-col items-center justify-center pl-2">
+          <span class="text-[10px] font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">DELTA BURNED</span>
+          <span id="preview-delta-burn" class="text-3xl font-black text-amber-400">0.0 GAL</span>
+        </div>
+      </div>
+
+      <!-- Segment Rate Subtext -->
+      <div class="text-center font-mono text-xs">
+        <span class="text-zinc-400">Calculated Segment Rate: </span>
+        <span id="preview-burn-gph" class="font-black text-emerald-400 text-sm">0.0 GPH</span>
+      </div>
+
+      <!-- TALLER MASSIVE 2-BUTTON STEPPERS (h-20 = 80px TALL!) -->
+      <div class="space-y-1.5 pt-1">
+        <div class="grid grid-cols-2 gap-3">
+          <!-- -1.0 GAL Button -->
+          <button onclick="adjustPendingInput(-1.0)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl font-mono font-black text-red-400 flex items-center justify-center shadow-lg active:scale-95">
+            -1.0 GAL
+          </button>
+          
+          <!-- -0.1 GAL Button -->
+          <button onclick="adjustPendingInput(-0.1)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl font-mono font-black text-red-300 flex items-center justify-center shadow-lg active:scale-95">
+            -0.1 GAL
+          </button>
+        </div>
+
+        <!-- VALIDATION WARNING BANNER -->
+        <div id="validation-banner" class="min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 invisible transition-all">
+          <svg id="validation-icon" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+          <span id="validation-msg">Validation status message</span>
+        </div>
+
+        <!-- Secondary Correction Row -->
+        <div class="flex items-center justify-between px-1 text-xs">
+          <span class="text-[10px] text-zinc-400 uppercase font-mono">Corrections:</span>
+          <div class="flex items-center space-x-2">
+            <button onclick="adjustPendingInput(0.1)" class="px-3 py-1 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-zinc-300">
+              +0.1 Nudge
+            </button>
+            <button onclick="adjustPendingInput(1.0)" class="px-3 py-1 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-emerald-400">
+              +1.0 Nudge
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONFIRM SWITCH ACTION BUTTON -->
+    <button id="btn-confirm-switch" onclick="confirmTankSwitch()" 
+      class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-lg font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-2 my-1 flex-shrink-0">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+      <span id="confirm-btn-text">CONFIRM SWITCH → RIGHT</span>
+    </button>
+
+    <!-- BRIGHT WHITE HINT -->
+    <div class="text-center pt-1 pb-1 flex-shrink-0">
+      <p class="text-[11px] font-black font-mono text-zinc-100 uppercase tracking-widest bg-zinc-900 py-1 px-3 rounded-lg inline-block border border-zinc-700 shadow-md">
+        ↓ Scroll down for Reset Options ↓
+      </p>
+    </div>
+
+    <!-- LARGE VERTICAL SPACER TO PUSH RESET BUTTON OFF-SCREEN -->
+    <div class="pt-48 pb-16 text-center border-t border-zinc-800/80 mt-8 flex-shrink-0">
+      <button onclick="triggerHaptic(20); openResetStep1();" class="px-5 py-3 bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 mx-auto shadow-lg">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+        </svg>
+        <span>Reset Flight / Fuel Tanks...</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. SAFETY FRICTION CONFIRMATION MODALS -->
+  <!-- ========================================================================= -->
+
+  <!-- UNDO CONFIRMATION MODAL -->
+  <div id="undo-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border-2 border-zinc-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+      <div class="text-center space-y-2">
+        <h3 class="text-xl font-black text-amber-400 uppercase tracking-wider">Undo Last Switch Entry?</h3>
+        <p class="text-xs text-zinc-300">This will remove the most recent entry from your flight log and revert tank levels to the previous state.</p>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <button onclick="triggerHaptic(20); closeUndoModal();" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-base uppercase tracking-wider shadow-lg">
+          CANCEL (KEEP LOG ENTRY)
+        </button>
+        <button onclick="triggerHaptic(40); performUndo(); closeUndoModal();" class="w-full py-2.5 bg-zinc-800 hover:bg-red-950 border border-zinc-700 text-red-400 font-bold rounded-xl text-xs uppercase tracking-wider">
+          Confirm Undo Entry
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESET STEP 1 MODAL -->
+  <div id="reset-step1-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border-2 border-red-900/60 rounded-2xl max-w-md w-full p-6 space-y-6 shadow-2xl">
+      
+      <div class="flex items-center space-x-3 text-red-400">
+        <div class="bg-red-950 p-3 rounded-xl border border-red-800">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-xl font-black uppercase text-zinc-100">Reset Fuel Tanks?</h3>
+          <p class="text-xs text-red-300 font-semibold">Caution: Do not reset fuel while flying!</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <button onclick="triggerHaptic(20); closeResetStep1();" class="w-full py-5 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl text-lg uppercase tracking-wider shadow-xl">
+          CANCEL / RETURN TO COCKPIT
+        </button>
+
+        <div class="pt-2 text-center">
+          <button onclick="triggerHaptic(20); closeResetStep1(); openResetStep2();" class="text-xs text-zinc-500 hover:text-red-400 underline font-mono">
+            Proceed to reset options...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESET STEP 2 MODAL -->
+  <div id="reset-step2-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border-2 border-red-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+      
+      <div class="text-center space-y-1">
+        <h3 class="text-lg font-black uppercase text-red-400">Select Reset Mode</h3>
+        <p class="text-xs text-zinc-400">Confirm desired action for aircraft fuel state:</p>
+      </div>
+
+      <div class="space-y-3">
+        <button onclick="triggerHaptic(20); closeResetStep2();" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm uppercase tracking-wider">
+          CANCEL / ABORT RESET
+        </button>
+
+        <button onclick="triggerHaptic(50); performResetFull(); closeResetStep2(); closeSwitchScreen();" class="w-full p-3.5 bg-zinc-800 hover:bg-red-950 border border-zinc-700 rounded-xl text-left">
+          <div class="text-xs font-black text-red-300 uppercase">RESET TO FULL (30.0 L / 30.0 R)</div>
+          <div class="text-[10px] text-zinc-400">Sets 30.0 L / 30.0 R / 60.0 EMS Baseline (Left Active)</div>
+        </button>
+
+        <button onclick="triggerHaptic(50); performResetNextLeg(); closeResetStep2(); closeSwitchScreen();" class="w-full p-3.5 bg-zinc-800 hover:bg-blue-950 border border-zinc-700 rounded-xl text-left">
+          <div class="text-xs font-black text-blue-300 uppercase">START NEXT LEG (KEEP CURRENT FUEL)</div>
+          <div class="text-[10px] text-zinc-400">Clears history log & timer while preserving tank levels</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const STORAGE_KEY = 'rv10_fuel_tracker_state_v8';
+
+    const defaultState = {
+      leftTank: 30.0,
+      rightTank: 30.0,
+      activeTank: 'LEFT',
+      previousEmsTotal: 60.0,
+      pendingEmsInput: 60.0,
+      lastSwitchTime: Date.now(),
+      flightStartTime: Date.now(),
+      flightStarted: false,
+      history: [],
+      gpsStatus: 'na',
+      gpsSpeedKnots: null
+    };
+
+    let state = { ...defaultState };
+
+    function triggerHaptic(duration = 25) {
+      if ('vibrate' in navigator) {
+        try { navigator.vibrate(duration); } catch (e) {}
+      }
+    }
+
+    function formatUtc24(timestampMs) {
+      const d = new Date(timestampMs);
+      const hrs = String(d.getUTCHours()).padStart(2, '0');
+      const mins = String(d.getUTCMinutes()).padStart(2, '0');
+      return `${hrs}:${mins}Z`;
+    }
+
+    function formatDeltaDuration(mins) {
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      const hStr = String(h).padStart(2, '0');
+      const mStr = String(m).padStart(2, '0');
+      return `Δ ${hStr}:${mStr}`;
+    }
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          state = { ...defaultState, ...JSON.parse(saved) };
+        }
+      } catch (e) { console.error("Error loading state:", e); }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) { console.error("Error saving state:", e); }
+    }
+
+    function round1(num) {
+      return Math.round((num + Number.EPSILON) * 10) / 10;
+    }
+
+    function renderUI() {
+      // Top Status Bar
+      const totalFuel = round1(state.leftTank + state.rightTank);
+      document.getElementById('top-total-fuel').textContent = totalFuel.toFixed(1);
+
+      const topBadge = document.getElementById('top-active-badge');
+      topBadge.textContent = `${state.activeTank} TANK`;
+      topBadge.className = state.activeTank === 'LEFT' 
+        ? "px-2.5 py-1 bg-blue-600 text-white font-black text-xs tracking-widest rounded-lg uppercase shadow-md animate-pulse"
+        : "px-2.5 py-1 bg-emerald-600 text-white font-black text-xs tracking-widest rounded-lg uppercase shadow-md animate-pulse";
+
+      // Tank Cards
+      document.getElementById('left-tank-qty').textContent = state.leftTank.toFixed(1);
+      document.getElementById('right-tank-qty').textContent = state.rightTank.toFixed(1);
+
+      const leftPct = Math.max(0, Math.min(100, (state.leftTank / 30.0) * 100));
+      const rightPct = Math.max(0, Math.min(100, (state.rightTank / 30.0) * 100));
+      
+      document.getElementById('left-tank-bar').style.width = `${leftPct}%`;
+      document.getElementById('right-tank-bar').style.width = `${rightPct}%`;
+      
+      document.getElementById('left-burn-pct').textContent = `${Math.round(leftPct)}%`;
+      document.getElementById('right-burn-pct').textContent = `${Math.round(rightPct)}%`;
+
+      const leftCard = document.getElementById('left-tank-card');
+      const rightCard = document.getElementById('right-tank-card');
+      const leftBadge = document.getElementById('left-card-badge');
+      const rightBadge = document.getElementById('right-card-badge');
+
+      if (state.activeTank === 'LEFT') {
+        leftCard.classList.add('glow-left');
+        rightCard.classList.remove('glow-right');
+        leftBadge.classList.remove('hidden');
+        rightBadge.classList.add('hidden');
+      } else {
+        rightCard.classList.add('glow-right');
+        leftCard.classList.remove('glow-left');
+        rightBadge.classList.remove('hidden');
+        leftBadge.classList.add('hidden');
+      }
+
+      // Switch Screen Values
+      document.getElementById('switch-prev-ems').textContent = `${state.previousEmsTotal.toFixed(1)} GAL`;
+      document.getElementById('input-ems-number').value = state.pendingEmsInput.toFixed(1);
+
+      const elapsedMs = Math.max(0, Date.now() - state.lastSwitchTime);
+      const elapsedMins = Math.floor(elapsedMs / 60000);
+      
+      const deltaBurn = round1(state.previousEmsTotal - state.pendingEmsInput);
+      document.getElementById('preview-delta-burn').textContent = `${deltaBurn.toFixed(1)} GAL`;
+
+      let burnGph = 0.0;
+      if (elapsedMins > 0 && deltaBurn > 0) {
+        burnGph = round1((deltaBurn / elapsedMins) * 60);
+      }
+      document.getElementById('preview-burn-gph').textContent = `${burnGph.toFixed(1)} GPH`;
+
+      const altTank = state.activeTank === 'LEFT' ? 'RIGHT' : 'LEFT';
+      document.getElementById('confirm-btn-text').textContent = `CONFIRM SWITCH → ${altTank}`;
+
+      updateSwitchModalTankSelectionUI();
+      validateInputs(deltaBurn, burnGph, elapsedMins);
+      renderHistoryTable();
+
+      // Footer Readout
+      const now = Date.now();
+      const totalFlightMs = Math.max(0, now - state.flightStartTime);
+      const totalFlightMins = Math.floor(totalFlightMs / 60000);
+      const flightHrs = Math.floor(totalFlightMins / 60);
+      const flightRemMins = totalFlightMins % 60;
+      const flightTimeStr = `${String(flightHrs).padStart(2, '0')}h ${String(flightRemMins).padStart(2, '0')}m`;
+
+      document.getElementById('flight-duration-display').textContent = `FLIGHT TIME: ${flightTimeStr}`;
+
+      if (state.flightStarted && state.flightStartTime) {
+        document.getElementById('takeoff-timestamp-display').textContent = `TAKEOFF: ${formatUtc24(state.flightStartTime)}`;
+      } else {
+        document.getElementById('takeoff-timestamp-display').textContent = `TAKEOFF: STANDING BY`;
+      }
+    }
+
+    function updateSwitchModalTankSelectionUI() {
+      const btnL = document.getElementById('switch-select-left');
+      const btnR = document.getElementById('switch-select-right');
+
+      if (state.activeTank === 'LEFT') {
+        btnL.className = "py-2 rounded-xl font-black text-sm uppercase transition-all bg-blue-600 text-white shadow-lg";
+        btnR.className = "py-2 rounded-xl font-black text-sm uppercase transition-all text-zinc-400 hover:text-white bg-zinc-800 border border-zinc-700";
+      } else {
+        btnR.className = "py-2 rounded-xl font-black text-sm uppercase transition-all bg-emerald-600 text-white shadow-lg";
+        btnL.className = "py-2 rounded-xl font-black text-sm uppercase transition-all text-zinc-400 hover:text-white bg-zinc-800 border border-zinc-700";
+      }
+    }
+
+    function switchModalSelectTank(tank) {
+      triggerHaptic(20);
+      state.activeTank = tank;
+      saveState();
+      renderUI();
+    }
+
+    function validateInputs(deltaBurn, burnGph, elapsedMins) {
+      const banner = document.getElementById('validation-banner');
+      const icon = document.getElementById('validation-icon');
+      const msg = document.getElementById('validation-msg');
+      const confirmBtn = document.getElementById('btn-confirm-switch');
+
+      const currentActiveQty = state.activeTank === 'LEFT' ? state.leftTank : state.rightTank;
+      const newActiveQty = round1(currentActiveQty - deltaBurn);
+
+      if (state.pendingEmsInput > state.previousEmsTotal) {
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
+        msg.textContent = "INVALID: Entered EMS total cannot exceed previous reading.";
+        confirmBtn.disabled = true;
+        confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        return;
+      }
+
+      if (newActiveQty < 0) {
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
+        msg.textContent = `INVALID: Delta burn (${deltaBurn.toFixed(1)} G) exceeds ${state.activeTank} tank qty.`;
+        confirmBtn.disabled = true;
+        confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        return;
+      }
+
+      if (elapsedMins > 2 && (burnGph > 22.0 || burnGph < 4.0) && deltaBurn > 0) {
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-amber-950 text-amber-300 border border-amber-700 visible";
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
+        msg.textContent = `SANITY ALERT: Segment burn rate is ${burnGph.toFixed(1)} GPH. Verify EMS total.`;
+        confirmBtn.disabled = false;
+        confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        return;
+      }
+
+      // Inactive: preserve layout space as clean padding, hide contents
+      banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 invisible";
+      confirmBtn.disabled = false;
+      confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+
+    function adjustPendingInput(delta) {
+      triggerHaptic(20);
+      state.pendingEmsInput = round1(Math.max(0, Math.min(60.0, state.pendingEmsInput + delta)));
+      saveState();
+      renderUI();
+    }
+
+    function handleManualInput(val) {
+      const num = parseFloat(val);
+      if (!isNaN(num)) {
+        state.pendingEmsInput = round1(Math.max(0, Math.min(60.0, num)));
+        saveState();
+        renderUI();
+      }
+    }
+
+    function openSwitchScreen() {
+      const elapsedMs = Math.max(0, Date.now() - state.lastSwitchTime);
+      const elapsedHours = elapsedMs / (1000 * 60 * 60);
+      const predictedBurn = elapsedHours * 10.0;
+      state.pendingEmsInput = round1(Math.max(0, state.previousEmsTotal - predictedBurn));
+      
+      document.getElementById('switch-tanks-screen').classList.remove('hidden');
+      renderUI();
+    }
+
+    function closeSwitchScreen() {
+      const elapsedMs = Math.max(0, Date.now() - state.lastSwitchTime);
+      const elapsedHours = elapsedMs / (1000 * 60 * 60);
+      const predictedBurn = elapsedHours * 10.0;
+      state.pendingEmsInput = round1(Math.max(0, state.previousEmsTotal - predictedBurn));
+      saveState();
+      
+      document.getElementById('switch-tanks-screen').classList.add('hidden');
+    }
+
+    function confirmTankSwitch() {
+      const deltaBurn = round1(state.previousEmsTotal - state.pendingEmsInput);
+      const currentActiveQty = state.activeTank === 'LEFT' ? state.leftTank : state.rightTank;
+
+      if (state.pendingEmsInput > state.previousEmsTotal || deltaBurn > currentActiveQty) return;
+
+      triggerHaptic(50);
+
+      let newLeft = state.leftTank;
+      let newRight = state.rightTank;
+
+      if (state.activeTank === 'LEFT') {
+        newLeft = round1(state.leftTank - deltaBurn);
+      } else {
+        newRight = round1(state.rightTank - deltaBurn);
+      }
+
+      const now = Date.now();
+      const elapsedMs = Math.max(0, now - state.lastSwitchTime);
+      const elapsedMins = Math.floor(elapsedMs / 60000);
+      const burnGph = elapsedMins > 0 ? round1((deltaBurn / elapsedMins) * 60) : 0.0;
+
+      const logEntry = {
+        id: now,
+        utcTimeStr: formatUtc24(now),
+        switchedFrom: state.activeTank,
+        emsEntered: state.pendingEmsInput,
+        deltaBurn: deltaBurn,
+        leftCalc: newLeft,
+        rightCalc: newRight,
+        segmentBurnGph: burnGph,
+        segmentDurationMins: elapsedMins
+      };
+
+      state.history.unshift(logEntry);
+
+      state.leftTank = newLeft;
+      state.rightTank = newRight;
+      state.previousEmsTotal = state.pendingEmsInput;
+      state.lastSwitchTime = now;
+
+      state.activeTank = state.activeTank === 'LEFT' ? 'RIGHT' : 'LEFT';
+
+      saveState();
+      closeSwitchScreen();
+      renderUI();
+    }
+
+    function openUndoModal() { document.getElementById('undo-modal').classList.remove('hidden'); }
+    function closeUndoModal() { document.getElementById('undo-modal').classList.add('hidden'); }
+    
+    function openResetStep1() { document.getElementById('reset-step1-modal').classList.remove('hidden'); }
+    function closeResetStep1() { document.getElementById('reset-step1-modal').classList.add('hidden'); }
+    
+    function openResetStep2() { document.getElementById('reset-step2-modal').classList.remove('hidden'); }
+    function closeResetStep2() { document.getElementById('reset-step2-modal').classList.add('hidden'); }
+
+    function performUndo() {
+      if (state.history.length === 0) return;
+      const lastEntry = state.history.shift();
+
+      state.activeTank = lastEntry.switchedFrom;
+      state.leftTank = state.history.length > 0 ? state.history[0].leftCalc : 30.0;
+      state.rightTank = state.history.length > 0 ? state.history[0].rightCalc : 30.0;
+      
+      if (state.history.length > 0) {
+        state.previousEmsTotal = state.history[0].emsEntered;
+      } else {
+        state.previousEmsTotal = round1(state.leftTank + state.rightTank);
+      }
+
+      state.pendingEmsInput = state.previousEmsTotal;
+      state.lastSwitchTime = lastEntry.id;
+
+      saveState();
+      renderUI();
+    }
+
+    function performResetFull() {
+      const now = Date.now();
+      state = {
+        ...defaultState,
+        leftTank: 30.0,
+        rightTank: 30.0,
+        activeTank: 'LEFT',
+        previousEmsTotal: 60.0,
+        pendingEmsInput: 60.0,
+        lastSwitchTime: now,
+        flightStartTime: now,
+        flightStarted: false,
+        history: []
+      };
+      saveState();
+      renderUI();
+    }
+
+    function performResetNextLeg() {
+      const now = Date.now();
+      const currentTotal = round1(state.leftTank + state.rightTank);
+      state.previousEmsTotal = currentTotal;
+      state.pendingEmsInput = currentTotal;
+      state.lastSwitchTime = now;
+      state.flightStartTime = now;
+      state.flightStarted = false;
+      state.history = [];
+      saveState();
+      renderUI();
+    }
+
+    function renderHistoryTable() {
+      const tbody = document.getElementById('history-table-body');
+      const undoBtn = document.getElementById('btn-undo-modal-trigger');
+      const countBadge = document.getElementById('log-count-badge');
+
+      countBadge.textContent = `${state.history.length} event${state.history.length === 1 ? '' : 's'}`;
+
+      if (state.history.length > 0) {
+        undoBtn.classList.remove('hidden');
+      } else {
+        undoBtn.classList.add('hidden');
+        tbody.innerHTML = `
+          <tr id="empty-history-row">
+            <td colspan="6" class="p-4 text-center text-zinc-500 italic">No tank switch events logged for this flight leg.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = state.history.map(item => `
+        <tr class="hover:bg-zinc-800/40">
+          <td class="p-2 font-bold text-zinc-200">
+            <div>${item.utcTimeStr || formatUtc24(item.id)}</div>
+            <div class="text-[10px] text-amber-400 font-normal">${formatDeltaDuration(item.segmentDurationMins)}</div>
+          </td>
+          <td class="p-2">
+            <span class="px-1.5 py-0.5 rounded text-[9px] font-black ${item.switchedFrom === 'LEFT' ? 'bg-blue-950 text-blue-300 border border-blue-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">
+              ${item.switchedFrom}
+            </span>
+          </td>
+          <td class="p-2 font-mono text-amber-400 font-bold">${item.emsEntered.toFixed(1)} G</td>
+          <td class="p-2 font-mono text-blue-400">${item.leftCalc.toFixed(1)} G</td>
+          <td class="p-2 font-mono text-emerald-400">${item.rightCalc.toFixed(1)} G</td>
+          <td class="p-2 font-mono text-zinc-300">${item.deltaBurn.toFixed(1)} G <span class="text-zinc-500 text-[9px]">(${item.segmentBurnGph.toFixed(1)} GPH)</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function initGPS() {
+      const gpsDot = document.getElementById('gps-dot');
+      const gpsText = document.getElementById('gps-text');
+
+      if (!('geolocation' in navigator)) return;
+
+      let sustained60KtTimer = null;
+
+      navigator.geolocation.watchPosition(
+        (position) => {
+          const speedMps = position.coords.speed;
+          if (speedMps !== null && !isNaN(speedMps)) {
+            const speedKnots = round1(speedMps * 1.94384);
+            state.gpsSpeedKnots = speedKnots;
+            gpsText.textContent = `GPS: ${speedKnots} KTS`;
+            gpsDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse";
+
+            if (speedKnots > 60.0 && !state.flightStarted) {
+              if (!sustained60KtTimer) {
+                sustained60KtTimer = setTimeout(() => {
+                  state.flightStarted = true;
+                  state.flightStartTime = Date.now();
+                  saveState();
+                  renderUI();
+                }, 10000);
+              }
+            } else {
+              if (sustained60KtTimer) {
+                clearTimeout(sustained60KtTimer);
+                sustained60KtTimer = null;
+              }
+            }
+          }
+        },
+        () => {
+          gpsText.textContent = "GPS: N/A";
+          gpsDot.className = "w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block";
+        },
+        { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
+      );
+    }
+
+    function setupPWA() {
+      const manifest = {
+        name: "RV-10 Flight Tools",
+        short_name: "RV10 Flight",
+        start_url: "./index.html",
+        display: "standalone",
+        background_color: "#09090b",
+        theme_color: "#09090b",
+        orientation: "portrait",
+        icons: [{
+          src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%2309090b'/><path d='M256 64L448 448H64L256 64z' fill='%23f59e0b'/></svg>",
+          sizes: "512x512",
+          type: "image/svg+xml"
+        }]
+      };
+      
+      const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      document.getElementById('pwa-manifest').href = URL.createObjectURL(manifestBlob);
+
+      if ('serviceWorker' in navigator) {
+        const swCode = `
+          self.addEventListener('install', e => self.skipWaiting());
+          self.addEventListener('activate', e => clients.claim());
+          self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(res => res || fetch(e.request))));
+        `;
+        const swBlob = new Blob([swCode], { type: 'text/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      setupPWA();
+      initGPS();
+
+      setInterval(() => {
+        renderUI();
+      }, 30000);
+
+      renderUI();
+    });
+  </script>
+</body>
+</html>
