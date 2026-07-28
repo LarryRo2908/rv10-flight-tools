@@ -214,7 +214,7 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- MODULE 2: KNEEBOARD COCKPIT CARDS & SPECS (HIGH-READABILITY ZEBRA STRIPED) -->
+  <!-- MODULE 2: KNEEBOARD COCKPIT CARDS & SPECS -->
   <!-- ========================================================================= -->
   <main id="module-kneeboard" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-6 pb-28">
     
@@ -231,7 +231,7 @@
       </div>
     </div>
 
-    <!-- 1. OPERATING V-SPEEDS (LARGE & PROMINENT) -->
+    <!-- 1. OPERATING V-SPEEDS -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
         1. OPERATING V-SPEEDS (KIAS)
@@ -267,7 +267,7 @@
       </div>
     </div>
 
-    <!-- 3. CLIMB ALTITUDE LEANING SCHEDULE (ZEBRA STRIPED TABLE FOR HORIZONTAL TRACKING) -->
+    <!-- 3. CLIMB ALTITUDE LEANING SCHEDULE -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
         3. CLIMB ALTITUDE LEANING SCHEDULE (ALTIMETER MSL)
@@ -388,7 +388,7 @@
       </div>
     </div>
 
-    <!-- 5. CRUISE MODE TRADE-OFF ANALYSIS (155@11 vs. 145@10) -->
+    <!-- 5. CRUISE MODE TRADE-OFF ANALYSIS -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
         5. CRUISE MODE TRADE-OFF ANALYSIS (155 KT @ 11 GPH vs. 145 KT @ 10 GPH)
@@ -451,44 +451,168 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- MODULE 3: OPERATING CHECKLISTS -->
+  <!-- MODULE 3: OPERATING CHECKLISTS (INTEGRATED FROM INFORMATION/ FILES) -->
   <!-- ========================================================================= -->
-  <main id="module-checklists" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-28">
-    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-5 space-y-4">
-      <div class="border-b border-zinc-800 pb-3 flex justify-between items-center">
-        <h2 class="text-xl font-black text-white uppercase tracking-wider">Cockpit Checklists</h2>
-        <span class="px-3 py-1 bg-emerald-950 border border-emerald-700 text-emerald-300 font-mono text-xs rounded-lg">NORMAL & EMERGENCY</span>
+  <main id="module-checklists" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-6 pb-28">
+    
+    <!-- HEADER BRANDING -->
+    <div class="bg-zinc-900 border-2 border-emerald-600/50 rounded-2xl p-4 md:p-5 flex flex-col md:flex-row justify-between md:items-center gap-3">
+      <div>
+        <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-wider flex items-center space-x-2">
+          <span>📋 RV-10 N205EN Cockpit Checklists</span>
+        </h2>
+        <p class="text-xs md:text-sm text-emerald-400 font-mono font-semibold mt-0.5">Comprehensive Emergency Procedures & Normal Flight Operations</p>
       </div>
+      <span class="px-3 py-1.5 bg-emerald-950 border border-emerald-700 text-emerald-300 font-mono text-xs font-bold rounded-xl shadow-sm">Landscape Kneeboard Format</span>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs md:text-sm">
-        <!-- Emergency Tank Switch Checklist -->
-        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
-          <h3 class="text-sm md:text-base font-black text-red-400 uppercase tracking-wider flex items-center space-x-1.5">
-            <span>ENGINE FAILURE / IN-FLIGHT RESTART</span>
-          </h3>
-          <ol class="list-decimal list-inside space-y-2 text-zinc-300">
-            <li>Airspeed: <strong class="text-white text-base">Glide 90 KIAS</strong></li>
-            <li>Fuel Selector: <strong class="text-emerald-400 text-base">SWITCH TO FULLEST TANK</strong></li>
-            <li>Electric Fuel Pump: <strong class="text-amber-400 text-base">ON</strong></li>
-            <li>Mixture: <strong class="text-white text-base">FULL RICH</strong></li>
-            <li>Alternate Air: <strong class="text-white text-base">PULL OPEN</strong></li>
-            <li>Engine Gauges: <strong class="text-white text-base">CHECK EMS POWER & PRESSURE</strong></li>
-          </ol>
-        </div>
-
-        <!-- Pre-Takeoff Checklist -->
-        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
-          <h3 class="text-sm md:text-base font-black text-blue-400 uppercase tracking-wider">BEFORE TAKEOFF (RUN-UP)</h3>
-          <ol class="list-decimal list-inside space-y-2 text-zinc-300">
-            <li>Fuel Selector: <strong class="text-blue-400 text-base">LEFT TANK (PILOT SIDE)</strong></li>
-            <li>Trim: <strong class="text-white text-base">SET TAKEOFF</strong></li>
-            <li>Flaps: <strong class="text-white text-base">SET 0° - 15°</strong></li>
-            <li>Run-up 1700 RPM: <strong class="text-white text-base">MAGS & PROP CHECK</strong></li>
-            <li>Flight Controls: <strong class="text-white text-base">FREE & CORRECT</strong></li>
-          </ol>
-        </div>
+    <!-- 1. V-SPEEDS TABLE (PROMINENT TOP READOUT) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        ⚡ CRITICAL AIRSPEEDS FOR SAFE OPERATION (KIAS)
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 font-mono text-xs md:text-sm">
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vs0 (Stall Dirty)</span><strong class="text-xl md:text-2xl font-black text-zinc-200">53 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vs1 (Stall Clean)</span><strong class="text-xl md:text-2xl font-black text-zinc-200">62 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vr (Lift-off)</span><strong class="text-xl md:text-2xl font-black text-emerald-400">65 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vx (Best Angle)</span><strong class="text-xl md:text-2xl font-black text-blue-400">80 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vy (Best Rate)</span><strong class="text-xl md:text-2xl font-black text-blue-400">90 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vgl (Max Glide)</span><strong class="text-xl md:text-2xl font-black text-amber-300">80 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vfe (Flaps Max)</span><strong class="text-xl md:text-2xl font-black text-amber-400">85 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Va (Maneuver)</span><strong class="text-xl md:text-2xl font-black text-amber-400">125 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vno (Cruising)</span><strong class="text-xl md:text-2xl font-black text-blue-300">156 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vne (Never Exceed)</span><strong class="text-xl md:text-2xl font-black text-red-400">200 KTS</strong></div>
       </div>
     </div>
+
+    <!-- 2. EMERGENCY PROCEDURES (FROM Check List N205EN RevA.pages) -->
+    <div class="bg-zinc-900 border-2 border-red-900/80 rounded-2xl p-4 md:p-5 space-y-4">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-red-400 border-b border-red-900/60 pb-2 flex items-center space-x-2">
+        <span>⚠️ EMERGENCY PROCEDURES</span>
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs md:text-sm">
+        
+        <!-- ENGINE FAILURE GROUND ROLL -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
+          <strong class="text-red-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">ENGINE FAILURE — GROUND ROLL</strong>
+          <ul class="space-y-1.5 text-zinc-200">
+            <li class="flex justify-between"><span>Throttle</span><strong class="text-white uppercase">CLOSED</strong></li>
+            <li class="flex justify-between"><span>Braking</span><strong class="text-red-400 uppercase">MAX / AS REQUIRED</strong></li>
+            <li class="pt-1 text-[11px] text-zinc-400 italic">If running off runway appears certain:</li>
+            <li class="flex justify-between"><span>Fuel Selector</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Fuel Boost Pump</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Mag / Start Switch</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Master Switch</span><strong class="text-red-400 uppercase">OFF</strong></li>
+          </ul>
+        </div>
+
+        <!-- ENGINE FAILURE AFTER LIFTOFF & IN FLIGHT -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
+          <strong class="text-red-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">ENGINE FAILURE — IN FLIGHT RESTART</strong>
+          <ul class="space-y-1.5 text-zinc-200">
+            <li class="flex justify-between"><span>Fuel Boost Pump</span><strong class="text-emerald-400 uppercase">ON</strong></li>
+            <li class="flex justify-between"><span>Fuel Selector</span><strong class="text-emerald-400 uppercase">SWITCH TO OTHER TANK</strong></li>
+            <li class="flex justify-between"><span>Mixture</span><strong class="text-white uppercase">FULL RICH (LEAN AS REQ)</strong></li>
+            <li class="flex justify-between"><span>Mag Switch</span><strong class="text-amber-400 uppercase">LEFT / RIGHT / BOTH</strong></li>
+            <li class="flex justify-between"><span>Alt Air</span><strong class="text-white uppercase">PULL OPEN</strong></li>
+            <li class="flex justify-between"><span>Fuel Pump</span><strong class="text-zinc-300 uppercase">OFF (WHEN STABLE)</strong></li>
+          </ul>
+        </div>
+
+        <!-- FORCED LANDING -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
+          <strong class="text-red-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">FORCED LANDING (NO POWER)</strong>
+          <ul class="space-y-1.5 text-zinc-200">
+            <li class="flex justify-between"><span>Airspeed (Max Glide)</span><strong class="text-amber-300 text-base">80 KTS</strong></li>
+            <li class="flex justify-between"><span>Propeller</span><strong class="text-white uppercase">FULL AFT (COARSE)</strong></li>
+            <li class="flex justify-between"><span>Throttle</span><strong class="text-white uppercase">CLOSED</strong></li>
+            <li class="flex justify-between"><span>Fuel Selector & Boost</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Mag & Master Switch</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Transponder</span><strong class="text-amber-300 font-bold">7700</strong></li>
+            <li class="flex justify-between"><span>Seatbelts</span><strong class="text-white uppercase">TIGHT</strong></li>
+            <li class="pt-1 text-[11px] text-emerald-400 font-bold">When site is assured: Airspeed 75 KTS, Flaps AS REQ, Doors UNLATCH</li>
+          </ul>
+        </div>
+
+        <!-- ENGINE FIRE IN FLIGHT & GROUND -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
+          <strong class="text-red-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">ENGINE FIRE IN FLIGHT / GROUND</strong>
+          <ul class="space-y-1.5 text-zinc-200">
+            <li class="flex justify-between"><span>Fuel Selector</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Mixture</span><strong class="text-red-400 uppercase">IDLE CUT-OFF</strong></li>
+            <li class="flex justify-between"><span>Air Vents & Cabin Heat</span><strong class="text-white uppercase">CLOSED / OFF</strong></li>
+            <li class="flex justify-between"><span>Mag & Master Switches</span><strong class="text-red-400 uppercase">OFF</strong></li>
+            <li class="flex justify-between"><span>Airspeed</span><strong class="text-amber-300">INCREASE TO EXTINGUISH</strong></li>
+            <li class="pt-1 text-[11px] text-red-400 font-bold italic">Do NOT attempt in-flight restart after fire!</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. NORMAL OPERATING PROCEDURES (FROM N205EN_checklist-temp.pages & Check List.numbers) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-4">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-blue-400 border-b border-zinc-800 pb-2 flex items-center space-x-2">
+        <span>✅ NORMAL FLIGHT OPERATIONS</span>
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs md:text-sm">
+        
+        <!-- BEFORE TAKEOFF (RUN-UP) -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
+          <strong class="text-blue-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">BEFORE TAKEOFF (RUN-UP)</strong>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-200">
+            <li>Doors & Seatbelts: <strong class="text-white">LATCHED & TIGHT</strong></li>
+            <li>Flight Controls: <strong class="text-white">FREE & CORRECT</strong></li>
+            <li>Fuel Selector: <strong class="text-blue-400">LEFT TANK (PILOT SIDE)</strong></li>
+            <li>Trim & Flaps: <strong class="text-white">SET TAKEOFF / 0° - 15°</strong></li>
+            <li>Run-up 1,700 RPM: <strong class="text-amber-300">MAGS (MAX 175 DROP / 50 DIFF)</strong></li>
+            <li>Propeller: <strong class="text-white">CYCLE 3 TIMES</strong></li>
+            <li>Engine Gauges: <strong class="text-emerald-400">GREEN & OIL PRESS CHECK</strong></li>
+          </ol>
+        </div>
+
+        <!-- TAKEOFF & CLIMB -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
+          <strong class="text-blue-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">TAKEOFF & CLIMB</strong>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-200">
+            <li>Fuel Boost Pump: <strong class="text-emerald-400">ON FOR TAKEOFF</strong></li>
+            <li>Throttle & Mixture: <strong class="text-white">FULL FORWARD (~21 GPH)</strong></li>
+            <li>Lift-off (Vr): <strong class="text-emerald-400">65 KTS</strong></li>
+            <li>Best Climb (Vx / Vy): <strong class="text-blue-400">80 KTS / 90 KTS</strong></li>
+            <li>1,000 AGL Lean: <strong class="text-amber-400">SET ~17.0 GPH (~1,260°F EGT)</strong></li>
+            <li>Fuel Boost Pump: <strong class="text-zinc-400">OFF ABOVE 1,000 AGL</strong></li>
+          </ol>
+        </div>
+
+        <!-- CRUISE & DESCENT -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
+          <strong class="text-blue-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">CRUISE & DESCENT</strong>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-200">
+            <li>Power & Prop: <strong class="text-white">2300-2400 RPM / WOT OR 23"</strong></li>
+            <li>Mixture: <strong class="text-amber-400">LEAN TO 10.0 - 11.0 GPH (LOP)</strong></li>
+            <li>Fuel Tank Switch: <strong class="text-cyan-300">EVERY 30 MINS (LOG EVENT)</strong></li>
+            <li>Altimeter & ATIS: <strong class="text-white">SET LOCAL BARO</strong></li>
+            <li>Descent Power: <strong class="text-zinc-300">AS REQUIRED / ENRICHEN SLOWLY</strong></li>
+          </ol>
+        </div>
+
+        <!-- APPROACH & LANDING -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
+          <strong class="text-blue-400 font-bold block text-sm border-b border-zinc-800 pb-1 uppercase">BEFORE LANDING & SHUTDOWN</strong>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-200">
+            <li>Fuel Selector: <strong class="text-emerald-400">FULLEST TANK</strong></li>
+            <li>Fuel Boost Pump: <strong class="text-emerald-400">ON BEFORE LANDING</strong></li>
+            <li>Approach Airspeed: <strong class="text-amber-300">75 KTS (FLAPS FULL)</strong></li>
+            <li>After Landing: <strong class="text-zinc-400">FLAPS UP / PUMP OFF</strong></li>
+            <li>Shutdown: <strong class="text-red-400">MIXTURE IDLE CUT-OFF / MAGS OFF</strong></li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 
   <!-- FOOTER READOUT -->
@@ -729,7 +853,7 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    const STORAGE_KEY = 'rv10_fuel_tracker_state_v10';
+    const STORAGE_KEY = 'rv10_fuel_tracker_state_v11';
 
     const defaultState = {
       activeModule: 'fuel',
@@ -748,39 +872,33 @@
 
     let state = { ...defaultState };
 
-    // --- FLYQ 10-SECOND AUTO-HIDING BOTTOM NAVIGATION ENGINE ---
     let navHideTimer = null;
 
     function resetFlyQNavTimer() {
       const nav = document.getElementById('flyq-bottom-nav');
       const switchScreen = document.getElementById('switch-tanks-screen');
 
-      // Rule: Do NOT show navigation bar inside Tank MGMT screen overlay
       if (switchScreen && !switchScreen.classList.contains('hidden')) {
         nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
         nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
         return;
       }
 
-      // Fade IN navbar
       nav.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
       nav.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
 
-      // Clear existing timer and start fresh 10-second auto-hide timer
       if (navHideTimer) clearTimeout(navHideTimer);
 
       navHideTimer = setTimeout(() => {
         nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
         nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-      }, 10000); // 10 Seconds
+      }, 10000);
     }
 
-    // Bind screen touch/pointer event to wake FlyQ navbar for 10 seconds
     window.addEventListener('pointerdown', () => {
       resetFlyQNavTimer();
     });
 
-    // MODULE SWITCHER
     function switchModule(moduleName) {
       triggerHaptic(30);
       state.activeModule = moduleName;
@@ -794,17 +912,14 @@
       const btnKneeboard = document.getElementById('nav-btn-kneeboard');
       const btnChecklists = document.getElementById('nav-btn-checklists');
 
-      // Hide all modules
       fuelModule.classList.add('hidden');
       kneeboardModule.classList.add('hidden');
       checklistsModule.classList.add('hidden');
 
-      // Reset nav button styles (Default black)
       btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
       btnKneeboard.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
       btnChecklists.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
 
-      // Show selected module and highlight active button in CYAN
       if (moduleName === 'fuel') {
         fuelModule.classList.remove('hidden');
         btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
