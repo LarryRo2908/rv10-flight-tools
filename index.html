@@ -40,7 +40,7 @@
   <link id="pwa-manifest" rel="manifest" href="">
 
   <style>
-    /* Cockpit Touch Styles */
+    /* Cockpit Touch & Navigation Styles */
     body {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -52,13 +52,13 @@
     
     button {
       touch-action: manipulation;
-      transition: transform 0.05s ease, background-color 0.15s ease, border-color 0.15s ease;
+      transition: transform 0.05s ease, background-color 0.15s ease, border-color 0.15s ease, opacity 0.3s ease;
     }
     button:active {
       transform: scale(0.96);
     }
     
-    /* Glow Effects */
+    /* Active Feed Glow Effects */
     .glow-left {
       box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
       border-color: #3b82f6 !important;
@@ -77,10 +77,10 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col justify-between p-3 md:p-5 font-sans select-none">
+<body class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col justify-between p-3 md:p-6 font-sans select-none">
 
   <!-- 1. TOP STATUS BAR (NON-SELECTABLE READOUTS) -->
-  <header class="w-full max-w-4xl mx-auto flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 mb-3">
+  <header class="w-full max-w-5xl mx-auto flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 mb-3 flex-shrink-0">
     <!-- GPS Speed Readout -->
     <div id="gps-status-badge" class="flex items-center space-x-2 text-xs font-mono font-bold text-zinc-400">
       <span id="gps-dot" class="w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block"></span>
@@ -103,33 +103,35 @@
     </div>
   </header>
 
-  <!-- 2. MAIN COCKPIT DASHBOARD (ZERO SCROLLING) -->
-  <main class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-between space-y-3">
+  <!-- ========================================================================= -->
+  <!-- MODULE 1: FUEL TRACKER (MAIN COCKPIT DASHBOARD) -->
+  <!-- ========================================================================= -->
+  <main id="module-fuel" class="w-full max-w-5xl mx-auto flex-1 flex flex-col justify-between space-y-3 pb-20">
     
     <!-- TANK GAUGES DISPLAY ZONE -->
-    <div class="grid grid-cols-2 gap-3 md:gap-4">
+    <div class="grid grid-cols-2 gap-3 md:gap-5">
       
       <!-- LEFT TANK CARD -->
       <div id="left-tank-card" class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-6 flex flex-col justify-between transition-all duration-300 relative">
         <div class="flex justify-between items-start mb-1">
           <div>
-            <span class="text-xs font-black tracking-widest text-blue-400 uppercase">Left Tank</span>
-            <p class="text-[10px] text-zinc-400">Pilot Side</p>
+            <span class="text-xs md:text-sm font-black tracking-widest text-blue-400 uppercase">Left Tank</span>
+            <p class="text-[10px] md:text-xs text-zinc-400">Pilot Side (180 lbs offset)</p>
           </div>
-          <span id="left-card-badge" class="px-2 py-0.5 bg-blue-600 text-white font-black text-[10px] tracking-widest rounded-md uppercase">FEEDING</span>
+          <span id="left-card-badge" class="px-2 py-0.5 bg-blue-600 text-white font-black text-[10px] md:text-xs tracking-widest rounded-md uppercase">FEEDING</span>
         </div>
 
         <div class="my-2">
           <div class="flex items-baseline space-x-1">
-            <span id="left-tank-qty" class="text-4xl md:text-6xl font-black font-mono tracking-tight text-white">30.0</span>
-            <span class="text-lg font-bold text-zinc-400 font-mono">GAL</span>
+            <span id="left-tank-qty" class="text-5xl md:text-7xl font-black font-mono tracking-tight text-white">30.0</span>
+            <span class="text-xl font-bold text-zinc-400 font-mono">GAL</span>
           </div>
-          <div class="w-full bg-zinc-800 h-2 rounded-full mt-3 overflow-hidden">
+          <div class="w-full bg-zinc-800 h-2.5 rounded-full mt-3 overflow-hidden">
             <div id="left-tank-bar" class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
           </div>
         </div>
 
-        <div class="flex justify-between text-xs text-zinc-400 font-mono">
+        <div class="flex justify-between text-xs md:text-sm text-zinc-400 font-mono">
           <span>Capacity: 30.0 G</span>
           <span id="left-burn-pct">100%</span>
         </div>
@@ -139,23 +141,23 @@
       <div id="right-tank-card" class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-6 flex flex-col justify-between transition-all duration-300 relative">
         <div class="flex justify-between items-start mb-1">
           <div>
-            <span class="text-xs font-black tracking-widest text-emerald-400 uppercase">Right Tank</span>
-            <p class="text-[10px] text-zinc-400">Co-Pilot Side</p>
+            <span class="text-xs md:text-sm font-black tracking-widest text-emerald-400 uppercase">Right Tank</span>
+            <p class="text-[10px] md:text-xs text-zinc-400">Co-Pilot Side</p>
           </div>
-          <span id="right-card-badge" class="hidden px-2 py-0.5 bg-emerald-600 text-white font-black text-[10px] tracking-widest rounded-md uppercase">FEEDING</span>
+          <span id="right-card-badge" class="hidden px-2 py-0.5 bg-emerald-600 text-white font-black text-[10px] md:text-xs tracking-widest rounded-md uppercase">FEEDING</span>
         </div>
 
         <div class="my-2">
           <div class="flex items-baseline space-x-1">
-            <span id="right-tank-qty" class="text-4xl md:text-6xl font-black font-mono tracking-tight text-white">30.0</span>
-            <span class="text-lg font-bold text-zinc-400 font-mono">GAL</span>
+            <span id="right-tank-qty" class="text-5xl md:text-7xl font-black font-mono tracking-tight text-white">30.0</span>
+            <span class="text-xl font-bold text-zinc-400 font-mono">GAL</span>
           </div>
-          <div class="w-full bg-zinc-800 h-2 rounded-full mt-3 overflow-hidden">
+          <div class="w-full bg-zinc-800 h-2.5 rounded-full mt-3 overflow-hidden">
             <div id="right-tank-bar" class="bg-emerald-500 h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
           </div>
         </div>
 
-        <div class="flex justify-between text-xs text-zinc-400 font-mono">
+        <div class="flex justify-between text-xs md:text-sm text-zinc-400 font-mono">
           <span>Capacity: 30.0 G</span>
           <span id="right-burn-pct">100%</span>
         </div>
@@ -165,8 +167,8 @@
 
     <!-- PRIMARY ACTION BUTTON: TANK MGMT -->
     <button id="btn-open-switch-screen" onclick="triggerHaptic(40); openSwitchScreen();" 
-      class="w-full py-5 md:py-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-xl md:text-2xl font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-3 active:scale-[0.98]">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      class="w-full py-5 md:py-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-xl md:text-3xl font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-3 active:scale-[0.98]">
+      <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
       </svg>
       <span>TANK MGMT</span>
@@ -175,7 +177,7 @@
     <!-- FLIGHT SWITCH LOG ZONE -->
     <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-3.5 space-y-2 flex-1 flex flex-col justify-between">
       <div class="flex items-center justify-between">
-        <h2 class="text-xs font-black uppercase tracking-wider text-zinc-300 flex items-center space-x-2">
+        <h2 class="text-xs md:text-sm font-black uppercase tracking-wider text-zinc-300 flex items-center space-x-2">
           <span>Flight Switch Log</span>
           <span id="log-count-badge" class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 rounded-full font-mono text-[10px] text-zinc-400">0 events</span>
         </h2>
@@ -188,16 +190,16 @@
       </div>
 
       <!-- History Table -->
-      <div class="overflow-x-auto no-scrollbar rounded-xl border border-zinc-800 max-h-48">
-        <table class="w-full text-left font-mono text-xs">
-          <thead class="bg-zinc-950 text-zinc-400 uppercase text-[10px] tracking-wider border-b border-zinc-800 sticky top-0">
+      <div class="overflow-x-auto no-scrollbar rounded-xl border border-zinc-800 max-h-56">
+        <table class="w-full text-left font-mono text-xs md:text-sm">
+          <thead class="bg-zinc-950 text-zinc-400 uppercase text-[10px] md:text-xs tracking-wider border-b border-zinc-800 sticky top-0">
             <tr>
-              <th class="p-2">Time (UTC)</th>
-              <th class="p-2">Tank</th>
-              <th class="p-2">EMS Total</th>
-              <th class="p-2">Left Qty</th>
-              <th class="p-2">Right Qty</th>
-              <th class="p-2">Seg Burn</th>
+              <th class="p-2.5">Time (UTC)</th>
+              <th class="p-2.5">Tank</th>
+              <th class="p-2.5">EMS Total</th>
+              <th class="p-2.5">Left Qty</th>
+              <th class="p-2.5">Right Qty</th>
+              <th class="p-2.5">Seg Burn</th>
             </tr>
           </thead>
           <tbody id="history-table-body" class="divide-y divide-zinc-800/60 bg-zinc-900/50 text-zinc-300">
@@ -211,8 +213,121 @@
 
   </main>
 
+  <!-- ========================================================================= -->
+  <!-- MODULE 2: KNEEBOARD COCKPIT CARDS & SPECS -->
+  <!-- ========================================================================= -->
+  <main id="module-kneeboard" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-20">
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-5 space-y-5">
+      
+      <!-- Card Header -->
+      <div class="border-b border-zinc-800 pb-3 flex justify-between items-center">
+        <div>
+          <h2 class="text-xl font-black text-white uppercase tracking-wider">N205EN Cockpit Reference Card</h2>
+          <p class="text-xs text-blue-400 font-mono">Vans RV-10 • Lycoming IO-540-D4A5 (260 HP)</p>
+        </div>
+        <span class="px-3 py-1 bg-zinc-800 text-zinc-300 font-mono text-xs border border-zinc-700 rounded-lg">Usable: 60.0 GAL</span>
+      </div>
+
+      <!-- V-Speeds Grid -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">OPERATING V-SPEEDS (KIAS)</h3>
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 font-mono text-xs">
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vr (Rotate)</span><strong class="text-emerald-400 text-base">65 KTS</strong></div>
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vx (Best Angle)</span><strong class="text-blue-400 text-base">75 KTS</strong></div>
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vy (Best Rate)</span><strong class="text-blue-400 text-base">90 KTS</strong></div>
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Va (Maneuver)</span><strong class="text-amber-400 text-base">120 KTS</strong></div>
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vso (Stall Dirty)</span><strong class="text-zinc-300 text-base">58 KTS</strong></div>
+          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vne (Never Exceed)</span><strong class="text-red-400 text-base">200 KTS</strong></div>
+        </div>
+      </div>
+
+      <!-- Cruise & Power Settings Table -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">TYPICAL CRUISE POWER SETTINGS</h3>
+        <div class="overflow-x-auto rounded-xl border border-zinc-800 font-mono text-xs">
+          <table class="w-full text-left">
+            <thead class="bg-zinc-950 text-zinc-400 uppercase text-[10px]">
+              <tr>
+                <th class="p-2.5">Profile</th>
+                <th class="p-2.5">MP (in.Hg)</th>
+                <th class="p-2.5">RPM</th>
+                <th class="p-2.5">Fuel Burn</th>
+                <th class="p-2.5">Target Speed</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800 bg-zinc-950/50 text-zinc-200">
+              <tr>
+                <td class="p-2.5 font-bold text-emerald-400">Economy Cruise (LOP)</td>
+                <td class="p-2.5">21.5 - 22.5"</td>
+                <td class="p-2.5">2300 RPM</td>
+                <td class="p-2.5 text-amber-400 font-bold">10.0 - 10.5 GPH</td>
+                <td class="p-2.5">155 - 165 KTAS</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-blue-400">Normal Cruise (LOP)</td>
+                <td class="p-2.5">23.0 - 24.0"</td>
+                <td class="p-2.5">2400 RPM</td>
+                <td class="p-2.5 text-amber-400 font-bold">11.5 - 12.5 GPH</td>
+                <td class="p-2.5">165 - 175 KTAS</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-purple-400">High Altitude Climb</td>
+                <td class="p-2.5">Full Throttle</td>
+                <td class="p-2.5">2500 RPM</td>
+                <td class="p-2.5 text-red-400 font-bold">15.0 - 18.0 GPH</td>
+                <td class="p-2.5">100 - 110 KIAS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODULE 3: OPERATING CHECKLISTS -->
+  <!-- ========================================================================= -->
+  <main id="module-checklists" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-20">
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-5 space-y-4">
+      <div class="border-b border-zinc-800 pb-3 flex justify-between items-center">
+        <h2 class="text-xl font-black text-white uppercase tracking-wider">Cockpit Checklists</h2>
+        <span class="px-3 py-1 bg-emerald-950 border border-emerald-700 text-emerald-300 font-mono text-xs rounded-lg">NORMAL & EMERGENCY</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+        <!-- Emergency Tank Switch Checklist -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
+          <h3 class="text-sm font-black text-red-400 uppercase tracking-wider flex items-center space-x-1.5">
+            <span>ENGINE FAILURE / IN-FLIGHT RESTART</span>
+          </h3>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-300">
+            <li>Airspeed: <strong class="text-white">Glide 90 KIAS</strong></li>
+            <li>Fuel Selector: <strong class="text-emerald-400">SWITCH TO FULLEST TANK</strong></li>
+            <li>Electric Fuel Pump: <strong class="text-amber-400">ON</strong></li>
+            <li>Mixture: <strong class="text-white">FULL RICH</strong></li>
+            <li>Alternate Air: <strong class="text-white">PULL OPEN</strong></li>
+            <li>Engine Gauges: <strong class="text-white">CHECK EMS POWER & PRESSURE</strong></li>
+          </ol>
+        </div>
+
+        <!-- Pre-Takeoff Checklist -->
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
+          <h3 class="text-sm font-black text-blue-400 uppercase tracking-wider">BEFORE TAKEOFF (RUN-UP)</h3>
+          <ol class="list-decimal list-inside space-y-1.5 text-zinc-300">
+            <li>Fuel Selector: <strong class="text-blue-400">LEFT TANK (PILOT SIDE)</strong></li>
+            <li>Trim: <strong class="text-white">SET TAKEOFF</strong></li>
+            <li>Flaps: <strong class="text-white">SET 0° - 15°</strong></li>
+            <li>Run-up 1700 RPM: <strong class="text-white">MAGS & PROP CHECK</strong></li>
+            <li>Flight Controls: <strong class="text-white">FREE & CORRECT</strong></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <!-- FOOTER READOUT -->
-  <footer class="w-full max-w-4xl mx-auto mt-3 text-center text-[10px] text-zinc-400 font-mono flex justify-between items-center px-1">
+  <footer class="w-full max-w-5xl mx-auto mt-3 text-center text-[10px] md:text-xs text-zinc-400 font-mono flex justify-between items-center px-1 flex-shrink-0">
     <div class="flex items-center space-x-2">
       <span id="takeoff-timestamp-display">TAKEOFF: STANDING BY</span>
       <span class="text-zinc-600">•</span>
@@ -222,94 +337,123 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- 3. FULL-SCREEN "TANK MGMT" OVERLAY -->
+  <!-- FLYQ-STYLE AUTO-HIDING 10-SECOND CYAN BOTTOM NAVIGATION BAR -->
   <!-- ========================================================================= -->
-  <div id="switch-tanks-screen" class="fixed inset-0 bg-zinc-950 z-40 hidden flex flex-col justify-between p-3 md:p-6 overflow-y-auto">
+  <nav id="flyq-bottom-nav" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 opacity-0 translate-y-4 pointer-events-none">
+    <div class="bg-black border-2 border-zinc-700 rounded-2xl shadow-2xl p-1.5 flex items-center space-x-2 backdrop-blur-xl">
+      
+      <!-- Tab 1: Fuel Tracker -->
+      <button id="nav-btn-fuel" onclick="switchModule('fuel')" 
+        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+        <span>FUEL</span>
+      </button>
+
+      <!-- Tab 2: Kneeboard / Cards -->
+      <button id="nav-btn-kneeboard" onclick="switchModule('kneeboard')" 
+        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        <span>KNEEBOARD</span>
+      </button>
+
+      <!-- Tab 3: Checklists -->
+      <button id="nav-btn-checklists" onclick="switchModule('checklists')" 
+        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+        <span>CHECKLISTS</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ========================================================================= -->
+  <!-- FULL-SCREEN "TANK MGMT" OVERLAY (NO BOTTOM NAV BAR) -->
+  <!-- ========================================================================= -->
+  <div id="switch-tanks-screen" class="fixed inset-0 bg-zinc-950 z-40 hidden flex flex-col justify-between p-4 md:p-8 overflow-y-auto">
     
     <!-- STREAMLINED HEADER -->
-    <div class="flex items-center justify-between border-b border-zinc-800 pb-2 flex-shrink-0">
+    <div class="flex items-center justify-between border-b border-zinc-800 pb-3 flex-shrink-0">
       <div class="flex items-center space-x-2">
         <span class="text-xs font-black uppercase text-zinc-400">PREV EMS:</span>
-        <strong id="switch-prev-ems" class="text-lg font-mono font-black text-amber-400">60.0 GAL</strong>
+        <strong id="switch-prev-ems" class="text-xl font-mono font-black text-amber-400">60.0 GAL</strong>
       </div>
 
-      <!-- BACK / CLOSE BUTTON -->
-      <button onclick="triggerHaptic(20); closeSwitchScreen();" class="px-3.5 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center space-x-1">
+      <button onclick="triggerHaptic(20); closeSwitchScreen();" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 rounded-xl text-xs md:text-sm font-bold uppercase tracking-wider flex items-center space-x-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         <span>Back / Close</span>
       </button>
     </div>
 
     <!-- Active Feed Selection Pills -->
-    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-2.5 my-1.5 flex-shrink-0">
-      <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-1 text-center">Selected Active Feed:</span>
-      <div class="grid grid-cols-2 gap-2">
-        <button id="switch-select-left" onclick="switchModalSelectTank('LEFT')" class="py-2 rounded-xl font-black text-sm uppercase transition-all bg-blue-600 text-white shadow-lg">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 my-2 flex-shrink-0">
+      <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-zinc-400 block mb-1.5 text-center">Selected Active Feed:</span>
+      <div class="grid grid-cols-2 gap-3">
+        <button id="switch-select-left" onclick="switchModalSelectTank('LEFT')" class="py-3 rounded-xl font-black text-sm md:text-base uppercase transition-all bg-blue-600 text-white shadow-lg">
           LEFT TANK (PILOT)
         </button>
-        <button id="switch-select-right" onclick="switchModalSelectTank('RIGHT')" class="py-2 rounded-xl font-black text-sm uppercase transition-all text-zinc-400 hover:text-white bg-zinc-800 border border-zinc-700">
+        <button id="switch-select-right" onclick="switchModalSelectTank('RIGHT')" class="py-3 rounded-xl font-black text-sm md:text-base uppercase transition-all text-zinc-400 hover:text-white bg-zinc-800 border border-zinc-700">
           RIGHT TANK
         </button>
       </div>
     </div>
 
     <!-- HIGH-READABILITY DELTA & EMS INPUT CARD -->
-    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-3.5 space-y-3 my-auto flex-shrink-0">
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-6 space-y-4 my-auto flex-shrink-0">
       
       <!-- EQUALLY MASSIVE READOUTS: NEW EMS (LEFT) & DELTA BURNED (RIGHT) -->
-      <div class="grid grid-cols-2 gap-2 bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center font-mono">
+      <div class="grid grid-cols-2 gap-3 bg-zinc-950 p-4 rounded-xl border border-zinc-800 text-center font-mono">
         <!-- New EMS Reading Input -->
         <div class="flex flex-col items-center justify-center border-r border-zinc-800 pr-2">
-          <span class="text-[10px] font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">NEW EMS READING</span>
+          <span class="text-[10px] md:text-xs font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">NEW EMS READING</span>
           <div class="flex items-center space-x-1">
             <input type="number" id="input-ems-number" step="0.1" min="0" max="60" 
-              class="w-32 bg-zinc-900 border-2 border-zinc-700 focus:border-amber-500 rounded-xl px-2 py-1 text-3xl font-mono font-black text-center text-amber-400 focus:outline-none" 
+              class="w-36 bg-zinc-900 border-2 border-zinc-700 focus:border-amber-500 rounded-xl px-2 py-1 text-3xl md:text-4xl font-mono font-black text-center text-amber-400 focus:outline-none" 
               oninput="handleManualInput(this.value)">
-            <span class="text-xs font-bold text-zinc-400 font-mono">GAL</span>
+            <span class="text-sm font-bold text-zinc-400 font-mono">GAL</span>
           </div>
         </div>
 
         <!-- Delta Burned Readout -->
         <div class="flex flex-col items-center justify-center pl-2">
-          <span class="text-[10px] font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">DELTA BURNED</span>
-          <span id="preview-delta-burn" class="text-3xl font-black text-amber-400">0.0 GAL</span>
+          <span class="text-[10px] md:text-xs font-sans text-zinc-400 uppercase font-bold tracking-wider mb-1">DELTA BURNED</span>
+          <span id="preview-delta-burn" class="text-3xl md:text-4xl font-black text-amber-400">0.0 GAL</span>
         </div>
       </div>
 
       <!-- Segment Rate Subtext -->
-      <div class="text-center font-mono text-xs">
+      <div class="text-center font-mono text-xs md:text-sm">
         <span class="text-zinc-400">Calculated Segment Rate: </span>
-        <span id="preview-burn-gph" class="font-black text-emerald-400 text-sm">0.0 GPH</span>
+        <span id="preview-burn-gph" class="font-black text-emerald-400 text-base">0.0 GPH</span>
       </div>
 
       <!-- TALLER MASSIVE 2-BUTTON STEPPERS (h-20 = 80px TALL!) -->
-      <div class="space-y-1.5 pt-1">
-        <div class="grid grid-cols-2 gap-3">
-          <!-- -1.0 GAL Button -->
-          <button onclick="adjustPendingInput(-1.0)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl font-mono font-black text-red-400 flex items-center justify-center shadow-lg active:scale-95">
+      <div class="space-y-2 pt-1">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- -1.0 GAL Button (80px TALL) -->
+          <button onclick="adjustPendingInput(-1.0)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl md:text-3xl font-mono font-black text-red-400 flex items-center justify-center shadow-lg active:scale-95">
             -1.0 GAL
           </button>
           
-          <!-- -0.1 GAL Button -->
-          <button onclick="adjustPendingInput(-0.1)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl font-mono font-black text-red-300 flex items-center justify-center shadow-lg active:scale-95">
+          <!-- -0.1 GAL Button (80px TALL) -->
+          <button onclick="adjustPendingInput(-0.1)" class="h-20 bg-zinc-800 active:bg-zinc-700 border-2 border-zinc-700 rounded-2xl text-2xl md:text-3xl font-mono font-black text-red-300 flex items-center justify-center shadow-lg active:scale-95">
             -0.1 GAL
           </button>
         </div>
 
         <!-- VALIDATION WARNING BANNER -->
-        <div id="validation-banner" class="min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 invisible transition-all">
+        <div id="validation-banner" class="min-h-[44px] rounded-xl p-2.5 text-xs md:text-sm font-bold font-mono flex items-center space-x-2 invisible transition-all">
           <svg id="validation-icon" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
           <span id="validation-msg">Validation status message</span>
         </div>
 
         <!-- Secondary Correction Row -->
-        <div class="flex items-center justify-between px-1 text-xs">
-          <span class="text-[10px] text-zinc-400 uppercase font-mono">Corrections:</span>
+        <div class="flex items-center justify-between px-1 text-xs md:text-sm">
+          <span class="text-[10px] md:text-xs text-zinc-400 uppercase font-mono">Corrections:</span>
           <div class="flex items-center space-x-2">
-            <button onclick="adjustPendingInput(0.1)" class="px-3 py-1 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-zinc-300">
+            <button onclick="adjustPendingInput(0.1)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-zinc-300">
               +0.1 Nudge
             </button>
-            <button onclick="adjustPendingInput(1.0)" class="px-3 py-1 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-emerald-400">
+            <button onclick="adjustPendingInput(1.0)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg font-mono font-bold text-emerald-400">
               +1.0 Nudge
             </button>
           </div>
@@ -320,14 +464,14 @@
 
     <!-- CONFIRM SWITCH ACTION BUTTON -->
     <button id="btn-confirm-switch" onclick="confirmTankSwitch()" 
-      class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-lg font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-2 my-1 flex-shrink-0">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+      class="w-full py-5 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 border-2 border-zinc-600 rounded-2xl text-xl font-black tracking-wider uppercase text-white shadow-2xl flex items-center justify-center space-x-2 my-2 flex-shrink-0">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
       <span id="confirm-btn-text">CONFIRM SWITCH → RIGHT</span>
     </button>
 
     <!-- BRIGHT WHITE HINT -->
     <div class="text-center pt-1 pb-1 flex-shrink-0">
-      <p class="text-[11px] font-black font-mono text-zinc-100 uppercase tracking-widest bg-zinc-900 py-1 px-3 rounded-lg inline-block border border-zinc-700 shadow-md">
+      <p class="text-xs font-black font-mono text-zinc-100 uppercase tracking-widest bg-zinc-900 py-1.5 px-4 rounded-lg inline-block border border-zinc-700 shadow-md">
         ↓ Scroll down for Reset Options ↓
       </p>
     </div>
@@ -344,11 +488,7 @@
 
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- 4. SAFETY FRICTION CONFIRMATION MODALS -->
-  <!-- ========================================================================= -->
-
-  <!-- UNDO CONFIRMATION MODAL -->
+  <!-- SAFETY FRICTION CONFIRMATION MODALS -->
   <div id="undo-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-zinc-900 border-2 border-zinc-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
       <div class="text-center space-y-2">
@@ -367,7 +507,6 @@
     </div>
   </div>
 
-  <!-- RESET STEP 1 MODAL -->
   <div id="reset-step1-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-zinc-900 border-2 border-red-900/60 rounded-2xl max-w-md w-full p-6 space-y-6 shadow-2xl">
       
@@ -397,7 +536,6 @@
     </div>
   </div>
 
-  <!-- RESET STEP 2 MODAL -->
   <div id="reset-step2-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-zinc-900 border-2 border-red-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
       
@@ -426,9 +564,10 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    const STORAGE_KEY = 'rv10_fuel_tracker_state_v8';
+    const STORAGE_KEY = 'rv10_fuel_tracker_state_v9';
 
     const defaultState = {
+      activeModule: 'fuel',
       leftTank: 30.0,
       rightTank: 30.0,
       activeTank: 'LEFT',
@@ -443,6 +582,77 @@
     };
 
     let state = { ...defaultState };
+
+    // --- FLYQ 10-SECOND AUTO-HIDING BOTTOM NAVIGATION ENGINE ---
+    let navHideTimer = null;
+
+    function resetFlyQNavTimer() {
+      const nav = document.getElementById('flyq-bottom-nav');
+      const switchScreen = document.getElementById('switch-tanks-screen');
+
+      // Rule: Do NOT show navigation bar inside Tank MGMT screen overlay
+      if (switchScreen && !switchScreen.classList.contains('hidden')) {
+        nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        return;
+      }
+
+      // Fade IN navbar
+      nav.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      nav.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+
+      // Clear existing timer and start fresh 10-second auto-hide timer
+      if (navHideTimer) clearTimeout(navHideTimer);
+
+      navHideTimer = setTimeout(() => {
+        nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }, 10000); // 10 Seconds
+    }
+
+    // Bind screen touch/pointer event to wake FlyQ navbar for 10 seconds
+    window.addEventListener('pointerdown', () => {
+      resetFlyQNavTimer();
+    });
+
+    // MODULE SWITCHER
+    function switchModule(moduleName) {
+      triggerHaptic(30);
+      state.activeModule = moduleName;
+      saveState();
+
+      const fuelModule = document.getElementById('module-fuel');
+      const kneeboardModule = document.getElementById('module-kneeboard');
+      const checklistsModule = document.getElementById('module-checklists');
+
+      const btnFuel = document.getElementById('nav-btn-fuel');
+      const btnKneeboard = document.getElementById('nav-btn-kneeboard');
+      const btnChecklists = document.getElementById('nav-btn-checklists');
+
+      // Hide all modules
+      fuelModule.classList.add('hidden');
+      kneeboardModule.classList.add('hidden');
+      checklistsModule.classList.add('hidden');
+
+      // Reset nav button styles (Default black)
+      btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
+      btnKneeboard.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
+      btnChecklists.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
+
+      // Show selected module and highlight active button in CYAN
+      if (moduleName === 'fuel') {
+        fuelModule.classList.remove('hidden');
+        btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
+      } else if (moduleName === 'kneeboard') {
+        kneeboardModule.classList.remove('hidden');
+        btnKneeboard.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
+      } else if (moduleName === 'checklists') {
+        checklistsModule.classList.remove('hidden');
+        btnChecklists.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
+      }
+
+      resetFlyQNavTimer();
+    }
 
     function triggerHaptic(duration = 25) {
       if ('vibrate' in navigator) {
@@ -485,7 +695,6 @@
     }
 
     function renderUI() {
-      // Top Status Bar
       const totalFuel = round1(state.leftTank + state.rightTank);
       document.getElementById('top-total-fuel').textContent = totalFuel.toFixed(1);
 
@@ -495,7 +704,6 @@
         ? "px-2.5 py-1 bg-blue-600 text-white font-black text-xs tracking-widest rounded-lg uppercase shadow-md animate-pulse"
         : "px-2.5 py-1 bg-emerald-600 text-white font-black text-xs tracking-widest rounded-lg uppercase shadow-md animate-pulse";
 
-      // Tank Cards
       document.getElementById('left-tank-qty').textContent = state.leftTank.toFixed(1);
       document.getElementById('right-tank-qty').textContent = state.rightTank.toFixed(1);
 
@@ -525,7 +733,6 @@
         leftBadge.classList.add('hidden');
       }
 
-      // Switch Screen Values
       document.getElementById('switch-prev-ems').textContent = `${state.previousEmsTotal.toFixed(1)} GAL`;
       document.getElementById('input-ems-number').value = state.pendingEmsInput.toFixed(1);
 
@@ -548,7 +755,6 @@
       validateInputs(deltaBurn, burnGph, elapsedMins);
       renderHistoryTable();
 
-      // Footer Readout
       const now = Date.now();
       const totalFlightMs = Math.max(0, now - state.flightStartTime);
       const totalFlightMins = Math.floor(totalFlightMs / 60000);
@@ -621,7 +827,6 @@
         return;
       }
 
-      // Inactive: preserve layout space as clean padding, hide contents
       banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 invisible";
       confirmBtn.disabled = false;
       confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -650,6 +855,7 @@
       state.pendingEmsInput = round1(Math.max(0, state.previousEmsTotal - predictedBurn));
       
       document.getElementById('switch-tanks-screen').classList.remove('hidden');
+      resetFlyQNavTimer(); // Will hide nav during Tank MGMT
       renderUI();
     }
 
@@ -661,6 +867,7 @@
       saveState();
       
       document.getElementById('switch-tanks-screen').classList.add('hidden');
+      resetFlyQNavTimer(); // Show nav on return
     }
 
     function confirmTankSwitch() {
@@ -793,19 +1000,19 @@
 
       tbody.innerHTML = state.history.map(item => `
         <tr class="hover:bg-zinc-800/40">
-          <td class="p-2 font-bold text-zinc-200">
+          <td class="p-2.5 font-bold text-zinc-200">
             <div>${item.utcTimeStr || formatUtc24(item.id)}</div>
-            <div class="text-[10px] text-amber-400 font-normal">${formatDeltaDuration(item.segmentDurationMins)}</div>
+            <div class="text-[10px] md:text-xs text-amber-400 font-normal">${formatDeltaDuration(item.segmentDurationMins)}</div>
           </td>
-          <td class="p-2">
-            <span class="px-1.5 py-0.5 rounded text-[9px] font-black ${item.switchedFrom === 'LEFT' ? 'bg-blue-950 text-blue-300 border border-blue-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">
+          <td class="p-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] md:text-xs font-black ${item.switchedFrom === 'LEFT' ? 'bg-blue-950 text-blue-300 border border-blue-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800'}">
               ${item.switchedFrom}
             </span>
           </td>
-          <td class="p-2 font-mono text-amber-400 font-bold">${item.emsEntered.toFixed(1)} G</td>
-          <td class="p-2 font-mono text-blue-400">${item.leftCalc.toFixed(1)} G</td>
-          <td class="p-2 font-mono text-emerald-400">${item.rightCalc.toFixed(1)} G</td>
-          <td class="p-2 font-mono text-zinc-300">${item.deltaBurn.toFixed(1)} G <span class="text-zinc-500 text-[9px]">(${item.segmentBurnGph.toFixed(1)} GPH)</span></td>
+          <td class="p-2.5 font-mono text-amber-400 font-bold">${item.emsEntered.toFixed(1)} G</td>
+          <td class="p-2.5 font-mono text-blue-400">${item.leftCalc.toFixed(1)} G</td>
+          <td class="p-2.5 font-mono text-emerald-400">${item.rightCalc.toFixed(1)} G</td>
+          <td class="p-2.5 font-mono text-zinc-300">${item.deltaBurn.toFixed(1)} G <span class="text-zinc-500 text-[10px] md:text-xs">(${item.segmentBurnGph.toFixed(1)} GPH)</span></td>
         </tr>
       `).join('');
     }
@@ -886,6 +1093,9 @@
       loadState();
       setupPWA();
       initGPS();
+      
+      // Restore active module view
+      switchModule(state.activeModule || 'fuel');
 
       setInterval(() => {
         renderUI();

@@ -6,13 +6,13 @@ Any AI agent starting a new conversation in this workspace must read and strictl
 
 ---
 
-## 1. Aircraft & Project Profile
+## 1. Aircraft & Target Hardware Profile
 
 - **Aircraft Model:** Vans RV-10 (Registration: N205EN, Engine: Lycoming IO-540)
 - **Total Fuel Capacity:** 60.0 GAL usable (30.0 GAL Left tank, 30.0 GAL Right tank)
 - **Protocol:** Single engine feeding from one tank at a time. Pilot sits in Left seat (180 lbs offset), flight protocols start feeding on **LEFT TANK** to burn climb fuel and offset lateral weight & balance.
 - **Typical Fuel Burn:** ~10.0 GPH (cruise), 15.0 – 20.0 GPH (climb).
-- **Target Environment:** Single-pilot cockpit in an iPad / iPhone mount during in-flight operations (including turbulence).
+- **Target Primary Device:** **iPad Mini (6th Generation)** mounted in single-pilot cockpit during in-flight operations (including turbulence).
 
 ---
 
@@ -25,25 +25,30 @@ Any AI agent starting a new conversation in this workspace must read and strictl
 
 ---
 
-## 3. Cockpit Ergonomics & Human Factors Rules
+## 3. Cockpit Ergonomics & Navigation Rules (FlyQ Style)
 
-1. **Non-Interactive Top Status Bar**:
-   - The top header is 100% status-only (`GPS: OK / N/A`, `TOTAL FUEL: XX.X GAL`, `ACTIVE FEED: LEFT/RIGHT TANK`).
-   - Zero clickable buttons or reset controls on the top status header to prevent accidental touch in turbulence.
+1. **Auto-Hiding FlyQ-Style Bottom Navigation Bar**:
+   - Deep black background with white icons & text.
+   - **Active Module Tab:** Highlighted in **Cyan background** (`bg-cyan-500 text-black font-black`).
+   - **Auto-Hide Timer (10 Seconds):** Appears when the pilot touches the screen, and automatically fades out/hides after 10 seconds of inactivity to keep flight screens 100% unobstructed.
+   - **Screen Visibility Rule:** Present on all main module screens (`FUEL`, `KNEEBOARD`, `CHECKLISTS`). MUST NOT appear on the `Tank MGMT` full-screen modal/overlay. Pilot must tap `Back / Close` to exit Tank MGMT before changing modules.
 
-2. **Zero-Scroll Main Cockpit Dashboard**:
-   - Main flight screen features massive numerical displays for Left Tank (Blue) & Right Tank (Green) with active feed glow highlights.
+2. **Non-Interactive Top Status Bar**:
+   - 100% status-only (`GPS: OK / N/A`, `TOTAL FUEL: XX.X GAL`, `ACTIVE FEED: LEFT/RIGHT TANK`). Zero clickable elements on top.
+
+3. **Zero-Scroll Main Cockpit Dashboard**:
+   - Massive numerical displays for Left Tank (Blue) & Right Tank (Green) with active feed glow highlights.
    - ONE primary action button: `[ TANK MGMT ]`.
    - Flight Switch Log displaying 24-hr UTC timestamps (`HH:MMZ`) and segment duration subtext (`Δ HH:MM`).
 
-3. **No-Glasses Readability**:
-   - Primary numbers (**New EMS Reading**, **Delta Burned**, **Segment GPH**) MUST be rendered in large, bold font (30px+ `font-mono font-black`) so they can be read at a glance without reading glasses.
+4. **No-Glasses Readability**:
+   - Primary numbers (**New EMS Reading**, **Delta Burned**, **Segment GPH**) MUST be rendered in large, bold font (30px+ `font-mono font-black`) readable without reading glasses.
 
-4. **Massive Stepper Touch Targets**:
+5. **Massive Stepper Touch Targets**:
    - Primary deduction steppers `[-1.0 GAL]` and `[-0.1 GAL]` MUST be **80px tall (`h-20`)** and span 50% of the screen width each.
    - Secondary nudge buttons (`+0.1`, `+1.0`) are kept in a smaller secondary row for over-tap corrections.
 
-5. **Safety Friction Design for Destructive Actions**:
+6. **Safety Friction Design for Destructive Actions**:
    - **Undo Last Entry**: Requires a modal where the primary default button is a massive green `CANCEL (KEEP LOG ENTRY)`.
    - **Reset Flight / Fuel Tanks**: Located on the Tank Management page, separated from the `Confirm Switch` button by a large vertical scroll spacer (`pt-48 pb-16`). Requires a 2-step confirmation modal where `CANCEL` is always the primary top button.
    - **Unconfirmed Edits**: Tapping `Back / Close` on the Tank Management screen MUST discard any unconfirmed keypad/stepper edits and restore the EMS input to the clean auto-predicted value based on elapsed time.
@@ -53,8 +58,8 @@ Any AI agent starting a new conversation in this workspace must read and strictl
 ## 4. Multi-Module Roadmap
 
 1. **Module 1 (Implemented):** Fuel Tracker & Tank Switch Engine.
-2. **Module 2 (Planned):** Kneeboard Cockpit Reference Cards (integrated from `Flight_Data/N205EN_Cockpit_Card.html`).
-3. **Module 3 (Planned):** Performance & GAMI Lean Tables / Checklists.
+2. **Module 2 (Implemented):** Kneeboard Cockpit Reference Cards & Specs (integrated from `Flight_Data/N205EN_Cockpit_Card.html`).
+3. **Module 3 (Planned):** Performance & GAMI Lean Tables / Operating Checklists.
 
 ---
 
