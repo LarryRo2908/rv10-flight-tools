@@ -106,7 +106,7 @@
   <!-- ========================================================================= -->
   <!-- MODULE 1: FUEL TRACKER (MAIN COCKPIT DASHBOARD) -->
   <!-- ========================================================================= -->
-  <main id="module-fuel" class="w-full max-w-5xl mx-auto flex-1 flex flex-col justify-between space-y-3 pb-20">
+  <main id="module-fuel" class="w-full max-w-5xl mx-auto flex-1 flex flex-col justify-between space-y-3 pb-24">
     
     <!-- TANK GAUGES DISPLAY ZONE -->
     <div class="grid grid-cols-2 gap-3 md:gap-5">
@@ -214,112 +214,277 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- MODULE 2: KNEEBOARD COCKPIT CARDS & SPECS -->
+  <!-- MODULE 2: KNEEBOARD COCKPIT CARDS & SPECS (HIGH-READABILITY ZEBRA STRIPED) -->
   <!-- ========================================================================= -->
-  <main id="module-kneeboard" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-20">
-    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-5 space-y-5">
-      
-      <!-- Card Header -->
-      <div class="border-b border-zinc-800 pb-3 flex justify-between items-center">
-        <div>
-          <h2 class="text-xl font-black text-white uppercase tracking-wider">N205EN Cockpit Reference Card</h2>
-          <p class="text-xs text-blue-400 font-mono">Vans RV-10 • Lycoming IO-540-D4A5 (260 HP)</p>
-        </div>
-        <span class="px-3 py-1 bg-zinc-800 text-zinc-300 font-mono text-xs border border-zinc-700 rounded-lg">Usable: 60.0 GAL</span>
-      </div>
-
-      <!-- V-Speeds Grid -->
+  <main id="module-kneeboard" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-6 pb-28">
+    
+    <!-- HEADER BRANDING -->
+    <div class="bg-zinc-900 border-2 border-blue-600/50 rounded-2xl p-4 md:p-5 flex flex-col md:flex-row justify-between md:items-center gap-3">
       <div>
-        <h3 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">OPERATING V-SPEEDS (KIAS)</h3>
-        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 font-mono text-xs">
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vr (Rotate)</span><strong class="text-emerald-400 text-base">65 KTS</strong></div>
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vx (Best Angle)</span><strong class="text-blue-400 text-base">75 KTS</strong></div>
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vy (Best Rate)</span><strong class="text-blue-400 text-base">90 KTS</strong></div>
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Va (Maneuver)</span><strong class="text-amber-400 text-base">120 KTS</strong></div>
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vso (Stall Dirty)</span><strong class="text-zinc-300 text-base">58 KTS</strong></div>
-          <div class="bg-zinc-950 p-2.5 rounded-xl border border-zinc-800 text-center"><span class="text-[10px] text-zinc-500 block">Vne (Never Exceed)</span><strong class="text-red-400 text-base">200 KTS</strong></div>
-        </div>
+        <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-wider flex items-center space-x-2">
+          <span>✈️ N205EN Cockpit Reference Card</span>
+        </h2>
+        <p class="text-xs md:text-sm text-blue-400 font-mono font-semibold mt-0.5">Vans RV-10 • Lycoming IO-540-D4A5 (260 HP) • 60.0 GAL Usable (2x 30.0 GAL)</p>
       </div>
-
-      <!-- Cruise & Power Settings Table -->
-      <div>
-        <h3 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">TYPICAL CRUISE POWER SETTINGS</h3>
-        <div class="overflow-x-auto rounded-xl border border-zinc-800 font-mono text-xs">
-          <table class="w-full text-left">
-            <thead class="bg-zinc-950 text-zinc-400 uppercase text-[10px]">
-              <tr>
-                <th class="p-2.5">Profile</th>
-                <th class="p-2.5">MP (in.Hg)</th>
-                <th class="p-2.5">RPM</th>
-                <th class="p-2.5">Fuel Burn</th>
-                <th class="p-2.5">Target Speed</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-800 bg-zinc-950/50 text-zinc-200">
-              <tr>
-                <td class="p-2.5 font-bold text-emerald-400">Economy Cruise (LOP)</td>
-                <td class="p-2.5">21.5 - 22.5"</td>
-                <td class="p-2.5">2300 RPM</td>
-                <td class="p-2.5 text-amber-400 font-bold">10.0 - 10.5 GPH</td>
-                <td class="p-2.5">155 - 165 KTAS</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-blue-400">Normal Cruise (LOP)</td>
-                <td class="p-2.5">23.0 - 24.0"</td>
-                <td class="p-2.5">2400 RPM</td>
-                <td class="p-2.5 text-amber-400 font-bold">11.5 - 12.5 GPH</td>
-                <td class="p-2.5">165 - 175 KTAS</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-purple-400">High Altitude Climb</td>
-                <td class="p-2.5">Full Throttle</td>
-                <td class="p-2.5">2500 RPM</td>
-                <td class="p-2.5 text-red-400 font-bold">15.0 - 18.0 GPH</td>
-                <td class="p-2.5">100 - 110 KIAS</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="flex items-center space-x-2">
+        <span class="px-3 py-1.5 bg-blue-950 border border-blue-700 text-blue-300 font-mono text-xs font-bold rounded-xl shadow-sm">Safe Range: ~670 NM</span>
       </div>
-
     </div>
+
+    <!-- 1. OPERATING V-SPEEDS (LARGE & PROMINENT) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        1. OPERATING V-SPEEDS (KIAS)
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 font-mono">
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vr (Rotate)</span><strong class="text-xl md:text-2xl font-black text-emerald-400">65 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vx (Best Angle)</span><strong class="text-xl md:text-2xl font-black text-blue-400">75 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vy (Best Rate)</span><strong class="text-xl md:text-2xl font-black text-blue-400">90 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Va (Maneuver)</span><strong class="text-xl md:text-2xl font-black text-amber-400">120 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vso (Stall Dirty)</span><strong class="text-xl md:text-2xl font-black text-zinc-200">58 KTS</strong></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center"><span class="text-xs text-zinc-400 block font-sans font-bold">Vne (Never Exceed)</span><strong class="text-xl md:text-2xl font-black text-red-400">200 KTS</strong></div>
+      </div>
+    </div>
+
+    <!-- 2. OPERATIONAL RULES OF THUMB -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        2. OPERATIONAL RULES OF THUMB
+      </h3>
+      <div class="space-y-2.5 font-sans text-xs md:text-sm">
+        <div class="bg-blue-950/60 border-l-4 border-blue-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-blue-300 font-black block text-sm mb-0.5">🎯 Pre-Set 1,000 AGL Target:</strong>
+          <span class="text-zinc-200">At 1,000 ft AGL (~1,100 MSL), adjust mixture directly to <strong class="text-amber-300 font-mono text-base">~1,260°F Avg EGT</strong> (or <strong class="text-red-300 font-mono text-base">~1,325°F Cyl #4</strong>) / <strong class="text-amber-400 font-mono text-base">17.0 GPH</strong>. No peak hunting required.</span>
+        </div>
+        <div class="bg-zinc-950 border-l-4 border-amber-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-amber-400 font-black block text-sm mb-0.5">📉 Altitude Leaning Schedule:</strong>
+          <span class="text-zinc-200">Lean mixture by <strong class="text-amber-300 font-mono text-base">~1.0 GPH (or ~1 full turn)</strong> per 1,000 ft of climb from Takeoff (~21 GPH) to TOC (~13 GPH).</span>
+        </div>
+        <div class="bg-zinc-950 border-l-4 border-red-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-red-400 font-black block text-sm mb-0.5">🔥 EGT Sensitivity Factor:</strong>
+          <span class="text-zinc-200">1.0 GPH mixture lean yields <strong class="text-amber-300 font-mono text-base">~33°F EGT rise</strong>. (If 50°F cold of target, lean knob ~1.5 GPH / 1.5 turns).</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CLIMB ALTITUDE LEANING SCHEDULE (ZEBRA STRIPED TABLE FOR HORIZONTAL TRACKING) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        3. CLIMB ALTITUDE LEANING SCHEDULE (ALTIMETER MSL)
+      </h3>
+      <div class="overflow-x-auto rounded-xl border border-zinc-800">
+        <table class="w-full text-left font-mono text-xs md:text-sm">
+          <thead class="bg-zinc-950 text-zinc-300 uppercase text-xs tracking-wider border-b-2 border-zinc-700">
+            <tr>
+              <th class="p-3">Altimeter (MSL)</th>
+              <th class="p-3">Target GPH</th>
+              <th class="p-3">Avg EGT Target</th>
+              <th class="p-3">Cyl #4 EGT</th>
+              <th class="p-3">Cockpit Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800">
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">Takeoff (SL)</td>
+              <td class="p-3 font-black text-amber-400 text-base">~21.2 GPH</td>
+              <td class="p-3 text-amber-300">~1,180°F</td>
+              <td class="p-3 font-bold text-red-400">~1,240°F</td>
+              <td class="p-3 font-sans font-bold text-emerald-400">Full Rich for Takeoff</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-cyan-300">1,100 – 2,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">17.0 GPH</td>
+              <td class="p-3 text-amber-300 font-bold">1,258°F</td>
+              <td class="p-3 font-bold text-red-400">1,326°F</td>
+              <td class="p-3 font-sans font-bold text-cyan-300">Set Initial Lean at 1,000 AGL (pattern exit)</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">2,000 – 4,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">16.1 GPH</td>
+              <td class="p-3 text-amber-300">1,268°F</td>
+              <td class="p-3 font-bold text-red-400">1,335°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-cyan-300">4,000 – 6,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">15.0 GPH</td>
+              <td class="p-3 text-amber-300">1,314°F</td>
+              <td class="p-3 font-bold text-red-400">1,368°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">6,000 – 8,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">14.2 GPH</td>
+              <td class="p-3 text-amber-300">1,320°F</td>
+              <td class="p-3 font-bold text-red-400">1,368°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~0.8 GPH</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-cyan-300">8,000 – 10,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">13.4 GPH</td>
+              <td class="p-3 text-amber-300">1,314°F</td>
+              <td class="p-3 font-bold text-red-400">1,357°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~0.8 GPH</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">10,000 – 12,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">12.8 GPH</td>
+              <td class="p-3 text-amber-300">1,287°F</td>
+              <td class="p-3 font-bold text-red-400">1,326°F</td>
+              <td class="p-3 font-sans text-zinc-300">WOT / Fine Adjust</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-cyan-300">12,000 – 14,000 ft</td>
+              <td class="p-3 font-black text-amber-400 text-base">12.2 GPH</td>
+              <td class="p-3 text-amber-300">1,257°F</td>
+              <td class="p-3 font-bold text-red-400">1,288°F</td>
+              <td class="p-3 font-sans font-bold text-emerald-400">Transition to Cruise (set ~11.0 GPH)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. CRUISE PERFORMANCE MODES -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        4. CRUISE PERFORMANCE MODES
+      </h3>
+      <div class="overflow-x-auto rounded-xl border border-zinc-800">
+        <table class="w-full text-left font-mono text-xs md:text-sm">
+          <thead class="bg-zinc-950 text-zinc-300 uppercase text-xs tracking-wider border-b-2 border-zinc-700">
+            <tr>
+              <th class="p-3">Mode</th>
+              <th class="p-3">Cruise Speed</th>
+              <th class="p-3">Fuel Flow</th>
+              <th class="p-3">Efficiency</th>
+              <th class="p-3">Context & Application</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800">
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-emerald-400 text-sm">Normal Cruise</td>
+              <td class="p-3 font-black text-white text-base">155 kt TAS</td>
+              <td class="p-3 font-black text-amber-400 text-base">11.0 GPH</td>
+              <td class="p-3 font-bold text-cyan-300">14.1 NM/gal</td>
+              <td class="p-3 font-sans text-zinc-300">Standard cross-country (6k–10k ft, ~62% Power)</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-blue-400 text-sm">Economy Cruise</td>
+              <td class="p-3 font-black text-white text-base">145 kt TAS</td>
+              <td class="p-3 font-black text-amber-400 text-base">10.0 GPH</td>
+              <td class="p-3 font-bold text-cyan-300">14.5 NM/gal</td>
+              <td class="p-3 font-sans text-zinc-300">Deep lean / maximum range (~50–55% Power)</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-purple-400 text-sm">High Alt Cruise</td>
+              <td class="p-3 font-black text-white text-base">163 kt TAS</td>
+              <td class="p-3 font-black text-amber-400 text-base">10.8 GPH</td>
+              <td class="p-3 font-bold text-cyan-300">15.1 NM/gal</td>
+              <td class="p-3 font-sans text-zinc-300">Cruising > 10,500 ft MSL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. CRUISE MODE TRADE-OFF ANALYSIS (155@11 vs. 145@10) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        5. CRUISE MODE TRADE-OFF ANALYSIS (155 KT @ 11 GPH vs. 145 KT @ 10 GPH)
+      </h3>
+      <div class="overflow-x-auto rounded-xl border border-zinc-800">
+        <table class="w-full text-left font-mono text-xs md:text-sm">
+          <thead class="bg-zinc-950 text-zinc-300 uppercase text-xs tracking-wider border-b-2 border-zinc-700">
+            <tr>
+              <th class="p-3">Route Distance</th>
+              <th class="p-3">145 kt @ 10 GPH</th>
+              <th class="p-3">155 kt @ 11 GPH</th>
+              <th class="p-3">Time Saved</th>
+              <th class="p-3">Extra Fuel Burned</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800">
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">300 NM <span class="text-zinc-400 font-normal font-sans">(e.g. Boston)</span></td>
+              <td class="p-3 text-zinc-300">2h 04m (20.7 gal)</td>
+              <td class="p-3 font-bold text-emerald-400">1h 56m (21.3 gal)</td>
+              <td class="p-3 font-black text-amber-300">⏱️ 8.0 min faster</td>
+              <td class="p-3 font-bold text-zinc-300">+0.6 gallons</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">500 NM <span class="text-zinc-400 font-normal font-sans">(e.g. Atlanta)</span></td>
+              <td class="p-3 text-zinc-300">3h 27m (34.5 gal)</td>
+              <td class="p-3 font-bold text-emerald-400">3h 14m (35.5 gal)</td>
+              <td class="p-3 font-black text-amber-300">⏱️ 13.3 min faster</td>
+              <td class="p-3 font-bold text-zinc-300">+1.0 gallon</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white">600 NM <span class="text-zinc-400 font-normal font-sans">(e.g. Chicago / Jax)</span></td>
+              <td class="p-3 text-zinc-300">4h 08m (41.4 gal)</td>
+              <td class="p-3 font-bold text-emerald-400">3h 52m (42.6 gal)</td>
+              <td class="p-3 font-black text-amber-300">⏱️ 16.0 min faster</td>
+              <td class="p-3 font-bold text-zinc-300">+1.2 gallons</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-emerald-950/60 border-l-4 border-emerald-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800 font-sans text-xs md:text-sm">
+        <strong class="text-emerald-300 font-black block text-sm">💡 Cross-Country Verdict:</strong>
+        <span class="text-zinc-200">Flying <strong class="text-emerald-400 font-mono">155 kt @ 11 GPH</strong> saves <strong class="text-amber-300 font-mono">13 to 16 minutes</strong> on cross-country flights while burning only <strong class="text-amber-400 font-mono">1.0 extra gallon of fuel total</strong>!</span>
+      </div>
+    </div>
+
+    <!-- 6. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        6. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV)
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs md:text-sm">
+        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-1 font-sans">🧭 WEST: Chicago, IL (KMDW)</strong><span class="text-zinc-300">596 NM | 3h 52m @ 155kt | <strong class="text-emerald-400">17.4 gal reserve</strong></span></div>
+        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-1 font-sans">🧭 SOUTH: Jacksonville, FL (KJAX)</strong><span class="text-zinc-300">624 NM | 4h 02m @ 155kt | <strong class="text-emerald-400">15.6 gal reserve</strong></span></div>
+        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-1 font-sans">🧭 SOUTHWEST: Atlanta, GA (KPDK)</strong><span class="text-zinc-300">553 NM | 3h 34m @ 155kt | <strong class="text-emerald-400">20.8 gal reserve</strong></span></div>
+        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-1 font-sans">🧭 NORTH: Montreal / Toronto</strong><span class="text-zinc-300">371 / 330 NM | ~2h 15m @ 155kt | <strong class="text-emerald-400">~33.0 gal reserve</strong></span></div>
+      </div>
+    </div>
+
   </main>
 
   <!-- ========================================================================= -->
   <!-- MODULE 3: OPERATING CHECKLISTS -->
   <!-- ========================================================================= -->
-  <main id="module-checklists" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-20">
+  <main id="module-checklists" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-4 pb-28">
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-5 space-y-4">
       <div class="border-b border-zinc-800 pb-3 flex justify-between items-center">
         <h2 class="text-xl font-black text-white uppercase tracking-wider">Cockpit Checklists</h2>
         <span class="px-3 py-1 bg-emerald-950 border border-emerald-700 text-emerald-300 font-mono text-xs rounded-lg">NORMAL & EMERGENCY</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs md:text-sm">
         <!-- Emergency Tank Switch Checklist -->
         <div class="bg-zinc-950 p-4 rounded-xl border border-red-900/60 space-y-2">
-          <h3 class="text-sm font-black text-red-400 uppercase tracking-wider flex items-center space-x-1.5">
+          <h3 class="text-sm md:text-base font-black text-red-400 uppercase tracking-wider flex items-center space-x-1.5">
             <span>ENGINE FAILURE / IN-FLIGHT RESTART</span>
           </h3>
-          <ol class="list-decimal list-inside space-y-1.5 text-zinc-300">
-            <li>Airspeed: <strong class="text-white">Glide 90 KIAS</strong></li>
-            <li>Fuel Selector: <strong class="text-emerald-400">SWITCH TO FULLEST TANK</strong></li>
-            <li>Electric Fuel Pump: <strong class="text-amber-400">ON</strong></li>
-            <li>Mixture: <strong class="text-white">FULL RICH</strong></li>
-            <li>Alternate Air: <strong class="text-white">PULL OPEN</strong></li>
-            <li>Engine Gauges: <strong class="text-white">CHECK EMS POWER & PRESSURE</strong></li>
+          <ol class="list-decimal list-inside space-y-2 text-zinc-300">
+            <li>Airspeed: <strong class="text-white text-base">Glide 90 KIAS</strong></li>
+            <li>Fuel Selector: <strong class="text-emerald-400 text-base">SWITCH TO FULLEST TANK</strong></li>
+            <li>Electric Fuel Pump: <strong class="text-amber-400 text-base">ON</strong></li>
+            <li>Mixture: <strong class="text-white text-base">FULL RICH</strong></li>
+            <li>Alternate Air: <strong class="text-white text-base">PULL OPEN</strong></li>
+            <li>Engine Gauges: <strong class="text-white text-base">CHECK EMS POWER & PRESSURE</strong></li>
           </ol>
         </div>
 
         <!-- Pre-Takeoff Checklist -->
         <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-2">
-          <h3 class="text-sm font-black text-blue-400 uppercase tracking-wider">BEFORE TAKEOFF (RUN-UP)</h3>
-          <ol class="list-decimal list-inside space-y-1.5 text-zinc-300">
-            <li>Fuel Selector: <strong class="text-blue-400">LEFT TANK (PILOT SIDE)</strong></li>
-            <li>Trim: <strong class="text-white">SET TAKEOFF</strong></li>
-            <li>Flaps: <strong class="text-white">SET 0° - 15°</strong></li>
-            <li>Run-up 1700 RPM: <strong class="text-white">MAGS & PROP CHECK</strong></li>
-            <li>Flight Controls: <strong class="text-white">FREE & CORRECT</strong></li>
+          <h3 class="text-sm md:text-base font-black text-blue-400 uppercase tracking-wider">BEFORE TAKEOFF (RUN-UP)</h3>
+          <ol class="list-decimal list-inside space-y-2 text-zinc-300">
+            <li>Fuel Selector: <strong class="text-blue-400 text-base">LEFT TANK (PILOT SIDE)</strong></li>
+            <li>Trim: <strong class="text-white text-base">SET TAKEOFF</strong></li>
+            <li>Flaps: <strong class="text-white text-base">SET 0° - 15°</strong></li>
+            <li>Run-up 1700 RPM: <strong class="text-white text-base">MAGS & PROP CHECK</strong></li>
+            <li>Flight Controls: <strong class="text-white text-base">FREE & CORRECT</strong></li>
           </ol>
         </div>
       </div>
@@ -367,7 +532,7 @@
   </nav>
 
   <!-- ========================================================================= -->
-  <!-- FULL-SCREEN "TANK MGMT" OVERLAY (NO BOTTOM NAV BAR) -->
+  <!-- FULL-SCREEN "TANK MGMT" OVERLAY -->
   <!-- ========================================================================= -->
   <div id="switch-tanks-screen" class="fixed inset-0 bg-zinc-950 z-40 hidden flex flex-col justify-between p-4 md:p-8 overflow-y-auto">
     
@@ -564,7 +729,7 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    const STORAGE_KEY = 'rv10_fuel_tracker_state_v9';
+    const STORAGE_KEY = 'rv10_fuel_tracker_state_v10';
 
     const defaultState = {
       activeModule: 'fuel',
@@ -801,7 +966,7 @@
       const newActiveQty = round1(currentActiveQty - deltaBurn);
 
       if (state.pendingEmsInput > state.previousEmsTotal) {
-        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs md:text-sm font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
         icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
         msg.textContent = "INVALID: Entered EMS total cannot exceed previous reading.";
         confirmBtn.disabled = true;
@@ -810,7 +975,7 @@
       }
 
       if (newActiveQty < 0) {
-        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs md:text-sm font-bold font-mono flex items-center space-x-2 bg-red-950 text-red-300 border border-red-700 visible";
         icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
         msg.textContent = `INVALID: Delta burn (${deltaBurn.toFixed(1)} G) exceeds ${state.activeTank} tank qty.`;
         confirmBtn.disabled = true;
@@ -819,7 +984,7 @@
       }
 
       if (elapsedMins > 2 && (burnGph > 22.0 || burnGph < 4.0) && deltaBurn > 0) {
-        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 bg-amber-950 text-amber-300 border border-amber-700 visible";
+        banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs md:text-sm font-bold font-mono flex items-center space-x-2 bg-amber-950 text-amber-300 border border-amber-700 visible";
         icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
         msg.textContent = `SANITY ALERT: Segment burn rate is ${burnGph.toFixed(1)} GPH. Verify EMS total.`;
         confirmBtn.disabled = false;
@@ -827,7 +992,7 @@
         return;
       }
 
-      banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs font-bold font-mono flex items-center space-x-2 invisible";
+      banner.className = "min-h-[44px] rounded-xl p-2.5 text-xs md:text-sm font-bold font-mono flex items-center space-x-2 invisible";
       confirmBtn.disabled = false;
       confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     }
@@ -855,7 +1020,7 @@
       state.pendingEmsInput = round1(Math.max(0, state.previousEmsTotal - predictedBurn));
       
       document.getElementById('switch-tanks-screen').classList.remove('hidden');
-      resetFlyQNavTimer(); // Will hide nav during Tank MGMT
+      resetFlyQNavTimer();
       renderUI();
     }
 
@@ -867,7 +1032,7 @@
       saveState();
       
       document.getElementById('switch-tanks-screen').classList.add('hidden');
-      resetFlyQNavTimer(); // Show nav on return
+      resetFlyQNavTimer();
     }
 
     function confirmTankSwitch() {
@@ -1094,7 +1259,6 @@
       setupPWA();
       initGPS();
       
-      // Restore active module view
       switchModule(state.activeModule || 'fuel');
 
       setInterval(() => {
