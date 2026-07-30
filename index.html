@@ -229,17 +229,32 @@
         <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-wider flex items-center space-x-2">
           <span>✈️ N205EN Cockpit Reference Card</span>
         </h2>
-        <p class="text-xs md:text-sm text-blue-400 font-mono font-semibold mt-0.5">Vans RV-10 • Lycoming IO-540-D4A5 (260 HP) • 60.0 GAL Usable (2x 30.0 GAL)</p>
+        <p class="text-xs md:text-sm text-blue-400 font-mono font-semibold mt-0.5">Vans RV-10 • Lycoming IO-540-D4A5 (260 HP) • Engine Leaning Schedule & Cockpit Rules (Rev. 2 — July 30, 2026)</p>
       </div>
       <div class="flex items-center space-x-2">
         <span class="px-3 py-1.5 bg-blue-950 border border-blue-700 text-blue-300 font-mono text-xs font-bold rounded-xl shadow-sm">Safe Range: ~670 NM</span>
       </div>
     </div>
 
-    <!-- 1. OPERATING V-SPEEDS (REFINED BOX LAYOUT: VS0 53 KTS TOP LINE) -->
+    <!-- 1. AIRCRAFT & FUEL SYSTEM SPECIFICATIONS -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        1. OPERATING V-SPEEDS (KIAS)
+        1. AIRCRAFT & FUEL SYSTEM SPECIFICATIONS
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 font-mono text-xs md:text-sm">
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Usable Fuel:</strong><span class="text-zinc-200">60.0 Gal Usable (2x 30.0 Gal L/R, 100LL)</span></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Fuel Selector:</strong><span class="text-zinc-200">Single-tank feed (manual switch)</span></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Normal Cruise:</strong><span class="text-zinc-200">155 kt TAS / 11.0 GPH (6k–10k ft, ~62% Power)</span></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Economy Cruise:</strong><span class="text-zinc-200">145 kt TAS / 10.0 GPH (deep lean)</span></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Climb Target:</strong><span class="text-zinc-200">120–125 kt IAS / 18.0 GPH @ 1,000 ft AGL</span></div>
+        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-0.5 font-sans">Safe Range:</strong><span class="text-zinc-200">~670 NM (with &gt; 1 hour fuel reserve)</span></div>
+      </div>
+    </div>
+
+    <!-- 2. OPERATING V-SPEEDS (KIAS) -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        2. OPERATING V-SPEEDS (KIAS)
       </h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 font-mono">
         <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-center flex flex-col justify-center">
@@ -285,31 +300,10 @@
       </div>
     </div>
 
-    <!-- 2. OPERATIONAL RULES OF THUMB -->
+    <!-- 3. CLIMB ALTITUDE LEANING SCHEDULE (OAT < 80°F) -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        2. OPERATIONAL RULES OF THUMB
-      </h3>
-      <div class="space-y-2.5 font-sans text-xs md:text-sm">
-        <div class="bg-blue-950/60 border-l-4 border-blue-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
-          <strong class="text-blue-300 font-black block text-sm mb-0.5">🎯 Pre-Set 1,000 AGL Target:</strong>
-          <span class="text-zinc-200">At 1,000 ft AGL (~1,100 MSL), adjust mixture directly to <strong class="text-amber-300 font-mono text-base">~1,260°F Avg EGT</strong> (or <strong class="text-red-300 font-mono text-base">~1,325°F Cyl #4</strong>) / <strong class="text-amber-400 font-mono text-base">17.0 GPH</strong>. No peak hunting required.</span>
-        </div>
-        <div class="bg-zinc-950 border-l-4 border-amber-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
-          <strong class="text-amber-400 font-black block text-sm mb-0.5">📉 Altitude Leaning Schedule:</strong>
-          <span class="text-zinc-200">Lean mixture by <strong class="text-amber-300 font-mono text-base">~1.0 GPH (or ~1 full turn)</strong> per 1,000 ft of climb from Takeoff (~21 GPH) to TOC (~13 GPH).</span>
-        </div>
-        <div class="bg-zinc-950 border-l-4 border-red-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
-          <strong class="text-red-400 font-black block text-sm mb-0.5">🔥 EGT Sensitivity Factor:</strong>
-          <span class="text-zinc-200">1.0 GPH mixture lean yields <strong class="text-amber-300 font-mono text-base">~33°F EGT rise</strong>. (If 50°F cold of target, lean knob ~1.5 GPH / 1.5 turns).</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. CLIMB ALTITUDE LEANING SCHEDULE -->
-    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
-      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        3. CLIMB ALTITUDE LEANING SCHEDULE (ALTIMETER MSL)
+        3. CLIMB ALTITUDE LEANING SCHEDULE (OAT &lt; 80°F)
       </h3>
       <div class="overflow-x-auto rounded-xl border border-zinc-800">
         <table class="w-full text-left font-mono text-xs md:text-sm">
@@ -331,63 +325,88 @@
               <td class="p-3 font-sans font-bold text-emerald-400">Full Rich for Takeoff</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">1,100 – 2,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">17.0 GPH</td>
-              <td class="p-3 text-amber-300 font-bold">1,258°F</td>
-              <td class="p-3 font-bold text-red-400">1,326°F</td>
-              <td class="p-3 font-sans font-bold text-cyan-300">Set Initial Lean at 1,000 AGL (pattern exit)</td>
+              <td class="p-3 font-bold text-cyan-300">1,000 ft AGL</td>
+              <td class="p-3 font-black text-amber-400 text-base">18.0 GPH</td>
+              <td class="p-3 text-amber-300 font-bold">~1,270°F</td>
+              <td class="p-3 font-bold text-red-400">~1,325°F</td>
+              <td class="p-3 font-sans font-bold text-cyan-300">Set Initial Lean passing 1,000 AGL (120–125 KIAS)</td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-white">2,000 – 4,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">16.1 GPH</td>
-              <td class="p-3 text-amber-300">1,268°F</td>
-              <td class="p-3 font-bold text-red-400">1,335°F</td>
+              <td class="p-3 font-black text-amber-400 text-base">17.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,280°F</td>
+              <td class="p-3 font-bold text-red-400">~1,335°F</td>
               <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-cyan-300">4,000 – 6,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">15.0 GPH</td>
-              <td class="p-3 text-amber-300">1,314°F</td>
-              <td class="p-3 font-bold text-red-400">1,368°F</td>
+              <td class="p-3 font-black text-amber-400 text-base">16.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,314°F</td>
+              <td class="p-3 font-bold text-red-400">~1,365°F</td>
               <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-white">6,000 – 8,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">14.2 GPH</td>
-              <td class="p-3 text-amber-300">1,320°F</td>
-              <td class="p-3 font-bold text-red-400">1,368°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~0.8 GPH</td>
+              <td class="p-3 font-black text-amber-400 text-base">15.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,320°F</td>
+              <td class="p-3 font-bold text-red-400">~1,365°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-cyan-300">8,000 – 10,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">13.4 GPH</td>
-              <td class="p-3 text-amber-300">1,314°F</td>
-              <td class="p-3 font-bold text-red-400">1,357°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~0.8 GPH</td>
+              <td class="p-3 font-black text-amber-400 text-base">14.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,314°F</td>
+              <td class="p-3 font-bold text-red-400">~1,355°F</td>
+              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH</td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-white">10,000 – 12,000 ft</td>
               <td class="p-3 font-black text-amber-400 text-base">12.8 GPH</td>
-              <td class="p-3 text-amber-300">1,287°F</td>
-              <td class="p-3 font-bold text-red-400">1,326°F</td>
+              <td class="p-3 text-amber-300">~1,287°F</td>
+              <td class="p-3 font-bold text-red-400">~1,325°F</td>
               <td class="p-3 font-sans text-zinc-300">WOT / Fine Adjust</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
               <td class="p-3 font-bold text-cyan-300">12,000 – 14,000 ft</td>
               <td class="p-3 font-black text-amber-400 text-base">12.2 GPH</td>
-              <td class="p-3 text-amber-300">1,257°F</td>
-              <td class="p-3 font-bold text-red-400">1,288°F</td>
-              <td class="p-3 font-sans font-bold text-emerald-400">Transition to Cruise (set ~11.0 GPH)</td>
+              <td class="p-3 text-amber-300">~1,257°F</td>
+              <td class="p-3 font-bold text-red-400">~1,288°F</td>
+              <td class="p-3 font-sans font-bold text-emerald-400">Transition to Cruise (set ~11.0 GPH LOP)</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 4. CRUISE PERFORMANCE MODES -->
+    <!-- 4. OPERATIONAL RULES OF THUMB -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        4. CRUISE PERFORMANCE MODES
+        4. OPERATIONAL RULES OF THUMB
+      </h3>
+      <div class="space-y-2.5 font-sans text-xs md:text-sm">
+        <div class="bg-blue-950/60 border-l-4 border-blue-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-blue-300 font-black block text-sm mb-0.5">🎯 Standard Climb Target (OAT &lt; 80°F):</strong>
+          <span class="text-zinc-200">At 1,000 ft AGL, adjust mixture directly to <strong class="text-amber-400 font-mono text-base">18.0 GPH</strong> / <strong class="text-red-300 font-mono text-base">~1,325°F Cyl #4 EGT</strong> (~105°F ROP). Target airspeed: <strong class="text-cyan-300 font-mono">120–125 KIAS</strong>.</span>
+        </div>
+        <div class="bg-amber-950/60 border-l-4 border-amber-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-amber-400 font-black block text-sm mb-0.5">🔥 Hot Day Override (OAT &gt; 80°F):</strong>
+          <span class="text-zinc-200">Maintain <strong class="text-amber-300 font-mono text-base">&ge; 19.5 GPH (Full Rich)</strong> until above 3,000 ft MSL and pitch for <strong class="text-cyan-300 font-mono">125–130 KIAS</strong> to ensure CHTs remain &lt; 380°F.</span>
+        </div>
+        <div class="bg-zinc-950 border-l-4 border-blue-400 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-blue-300 font-black block text-sm mb-0.5">📉 Altitude Leaning Schedule:</strong>
+          <span class="text-zinc-200">Turn mixture knob lean by <strong class="text-amber-300 font-mono text-base">~1.0 GPH (~1 full turn)</strong> per 2,000 ft of climb up to top of climb.</span>
+        </div>
+        <div class="bg-red-950/60 border-l-4 border-red-500 p-3.5 rounded-r-xl border-y border-r border-zinc-800">
+          <strong class="text-red-400 font-black block text-sm mb-0.5">⚡ Thermal Safety Trigger:</strong>
+          <span class="text-zinc-200">If any CHT touches <strong class="text-red-300 font-mono text-base">380°F</strong> during climb, lower nose for +5 kt IAS and enrich mixture by +1.0 GPH.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. CRUISE PERFORMANCE MODES -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
+      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
+        5. CRUISE PERFORMANCE MODES
       </h3>
       <div class="overflow-x-auto rounded-xl border border-zinc-800">
         <table class="w-full text-left font-mono text-xs md:text-sm">
@@ -397,7 +416,7 @@
               <th class="p-3">Cruise Speed</th>
               <th class="p-3">Fuel Flow</th>
               <th class="p-3">Efficiency</th>
-              <th class="p-3">Context & Application</th>
+              <th class="p-3">Context &amp; Application</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-800">
@@ -420,17 +439,17 @@
               <td class="p-3 font-black text-white text-base">163 kt TAS</td>
               <td class="p-3 font-black text-amber-400 text-base">10.8 GPH</td>
               <td class="p-3 font-bold text-cyan-300">15.1 NM/gal</td>
-              <td class="p-3 font-sans text-zinc-300">Cruising > 10,500 ft MSL</td>
+              <td class="p-3 font-sans text-zinc-300">Cruising &gt; 10,500 ft MSL</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 5. CRUISE MODE TRADE-OFF ANALYSIS -->
+    <!-- 6. CRUISE MODE TRADE-OFF ANALYSIS -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        5. CRUISE MODE TRADE-OFF ANALYSIS (155 KT @ 11 GPH vs. 145 KT @ 10 GPH)
+        6. CRUISE MODE TRADE-OFF ANALYSIS (155 KT @ 11 GPH vs. 145 KT @ 10 GPH)
       </h3>
       <div class="overflow-x-auto rounded-xl border border-zinc-800">
         <table class="w-full text-left font-mono text-xs md:text-sm">
@@ -474,10 +493,10 @@
       </div>
     </div>
 
-    <!-- 6. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV) -->
+    <!-- 7. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV) -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
       <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        6. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV)
+        7. NON-STOP STILL-AIR RANGE ENVELOPE FROM MILLVILLE (KMIV)
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs md:text-sm">
         <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800"><strong class="text-blue-400 block mb-1 font-sans">🧭 WEST: Chicago, IL (KMDW)</strong><span class="text-zinc-300">596 NM | 3h 52m @ 155kt | <strong class="text-emerald-400">17.4 gal reserve</strong></span></div>
@@ -675,7 +694,7 @@
             <li>Throttle & Mixture: <strong class="text-white">FULL FORWARD (~21 GPH)</strong></li>
             <li>Rotate / Lift-off: <strong class="text-emerald-400">65 - 70 KTS</strong></li>
             <li>Climb Speed: <strong class="text-blue-400">80 KTS (Vx) / 90 KTS (Vy) / 105 CC</strong></li>
-            <li>1,000 AGL Lean: <strong class="text-amber-400">SET ~17.0 GPH (~1,260°F EGT)</strong></li>
+            <li>1,000 AGL Lean: <strong class="text-amber-400">SET ~18.0 GPH (~1,325°F Cyl #4 EGT)</strong></li>
             <li>Fuel Boost Pump: <strong class="text-zinc-400">OFF ABOVE 1,000 AGL</strong></li>
           </ol>
         </div>
