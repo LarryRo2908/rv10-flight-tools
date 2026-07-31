@@ -4,6 +4,12 @@ This document defines the architectural specifications, cockpit ergonomic rules,
 
 Any AI agent starting a new conversation in this workspace must read and strictly adhere to these instructions.
 
+## Conversation Start Protocol
+At the beginning of any new conversation thread in this workspace:
+1. Silently check Git status (`git status`).
+2. If remote changes exist on GitHub, prompt the user: *"Remote updates detected on GitHub for Flight Tools APP. Would you like me to pull them now?"*
+
+
 ---
 
 ## 1. Aircraft & Target Hardware Profile
