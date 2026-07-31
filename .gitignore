@@ -1,3 +1,6 @@
 .DS_Store
 *.log
 Flight_Data
+temp/*
+!temp/.gitkeep
+

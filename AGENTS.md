@@ -65,4 +65,4 @@ Any AI agent starting a new conversation in this workspace must read and strictl
 
 ## 5. Local Reference Data
 
-- Reference files and cockpit cards are accessible via the local alias directory: `file:///Users/larryr/Documents/Fuel%20Tank%20APP/Flight_Data/`
+- Reference files and cockpit cards are accessible via the local alias directory: `file:///Users/larryr/Documents/RV10%20AI%20Workspace/Flight_Data/reference/cockpit_cards/`
