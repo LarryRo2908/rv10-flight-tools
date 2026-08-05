@@ -716,6 +716,316 @@
 
   </main>
 
+  <!-- ========================================================================= -->
+  <!-- MODULE 4: GAMI INJECTOR TUNING & FLIGHT TEST -->
+  <!-- ========================================================================= -->
+  <main id="module-gami" class="w-full max-w-5xl mx-auto flex-1 hidden space-y-6 pb-28">
+    
+    <!-- HEADER BRANDING -->
+    <div class="bg-zinc-900 border-2 border-amber-500/50 rounded-2xl p-4 md:p-5 flex flex-col md:flex-row justify-between md:items-center gap-3 shadow-lg">
+      <div>
+        <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-wider flex items-center space-x-2">
+          <span class="text-amber-400">🔥</span>
+          <span>N205EN GAMI Injector Tuning & Flight Test</span>
+        </h2>
+        <p class="text-xs md:text-sm text-amber-300/80 font-mono font-semibold mt-0.5">
+          Van's RV-10 • Lycoming IO-540-D4A5 • Air Flow Performance (AFP) Injection System
+        </p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <span class="px-3 py-1.5 bg-amber-950 border border-amber-700 text-amber-300 font-mono text-xs md:text-sm font-bold rounded-xl shadow-sm">Target Spread: &lt; 0.3 GPH</span>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1 (TOP): COCKPIT FLIGHT TEST CHECKLIST (IN-FLIGHT USE - LARGE FONT) -->
+    <!-- ========================================================================= -->
+    <div class="bg-zinc-900 border-2 border-cyan-500/60 rounded-2xl p-4 md:p-6 space-y-5 shadow-2xl">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800 pb-3 gap-2">
+        <h3 class="text-lg md:text-xl font-black uppercase tracking-wider text-cyan-400 flex items-center space-x-2">
+          <span>✈️ COCKPIT FLIGHT TEST CHECKLIST</span>
+        </h3>
+        <span class="px-3 py-1 bg-cyan-950 border border-cyan-700 text-cyan-300 text-xs font-mono font-bold rounded-lg uppercase">
+          In-Flight Reference • High-Visibility Mode
+        </span>
+      </div>
+
+      <!-- PROTOCOL PARAMETERS BANNER -->
+      <div class="bg-zinc-950 border border-cyan-800/80 rounded-xl p-3 md:p-4 grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-sm md:text-base">
+        <div class="bg-zinc-900/90 p-2.5 rounded-lg border border-zinc-800 text-center">
+          <span class="text-xs text-zinc-400 block uppercase font-sans font-bold">Sweep Speed</span>
+          <strong class="text-cyan-300 text-base md:text-lg">8 GPH / 90 Sec</strong>
+          <span class="text-[11px] text-zinc-400 block">(1 GPH every 10 sec)</span>
+        </div>
+        <div class="bg-zinc-900/90 p-2.5 rounded-lg border border-zinc-800 text-center">
+          <span class="text-xs text-zinc-400 block uppercase font-sans font-bold">Power Setting</span>
+          <strong class="text-amber-400 text-base md:text-lg">WOT @ 2350 RPM</strong>
+          <span class="text-[11px] text-zinc-400 block">(Wide Open Throttle)</span>
+        </div>
+        <div class="bg-zinc-900/90 p-2.5 rounded-lg border border-zinc-800 text-center">
+          <span class="text-xs text-zinc-400 block uppercase font-sans font-bold">Step Pauses</span>
+          <strong class="text-emerald-400 text-base md:text-lg">5 – 10 Minutes</strong>
+          <span class="text-[11px] text-zinc-400 block">(Stabilize CHTs & Workload)</span>
+        </div>
+      </div>
+
+      <!-- PRE-FLIGHT LOGGING NOTE -->
+      <div class="bg-amber-950/40 border border-amber-800/60 rounded-xl p-3 flex items-center space-x-3 text-amber-200 font-mono text-xs md:text-sm">
+        <span class="text-xl">⚙️</span>
+        <div>
+          <strong class="font-sans uppercase text-amber-400 font-bold block">Pre-Flight Configuration:</strong>
+          <span>Ensure Dynon SkyView engine data logging rate is set to <strong>1 SECOND (1 Hz)</strong>.</span>
+        </div>
+      </div>
+
+      <!-- CHECKLIST STEPS (LARGE, COCKPIT-READABLE FONTS) -->
+      <div class="space-y-4 font-mono text-base md:text-lg">
+        
+        <!-- STEP 1: 7,500 FT -->
+        <div class="bg-zinc-950 p-4 md:p-5 rounded-xl border-2 border-emerald-500/40 space-y-3">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
+            <h4 class="text-lg md:text-xl font-black text-emerald-400 uppercase tracking-wide flex items-center space-x-2 font-sans">
+              <span>STEP 1: SWEEP 1 AT 7,500 FT MSL</span>
+            </h4>
+            <span class="text-xs px-2.5 py-1 bg-emerald-950 border border-emerald-700 text-emerald-300 font-bold rounded-lg uppercase">High MAP Check</span>
+          </div>
+          <ul class="space-y-2 text-zinc-100 font-medium">
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.1</span>
+              <span><strong class="text-emerald-400 font-black">Climb</strong> <strong class="text-white font-black bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">7,500</strong> FT MSL</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.2</span>
+              <span><strong class="text-amber-300 font-black">Level</strong>, <strong class="text-amber-300 font-black">trim</strong>, <strong class="text-amber-300 font-black">WOT</strong>, <strong class="text-amber-300 font-black">2350</strong> RPM</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.3</span>
+              <span><strong class="text-cyan-300 font-black">14.0</strong> GPH &rarr; <strong class="text-emerald-400 font-black">Pause</strong> 5–10 min <span class="text-xs text-zinc-400 font-sans">(stabilize CHTs)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.4</span>
+              <span><strong class="text-cyan-300 font-black">Lean</strong> <strong class="text-cyan-300 font-black">8.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.5</span>
+              <span><strong class="text-amber-300 font-black">Pause</strong> <strong class="text-amber-300 font-black">8.0</strong> GPH</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.6</span>
+              <span><strong class="text-emerald-300 font-black">Enrich</strong> <strong class="text-emerald-300 font-black">8.0</strong> <strong class="text-emerald-300 font-black">14.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">1.7</span>
+              <span><strong class="text-emerald-400 font-black">Pause</strong> 5–10 min</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- STEP 2: 9,500 FT -->
+        <div class="bg-zinc-950 p-4 md:p-5 rounded-xl border-2 border-blue-500/40 space-y-3">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
+            <h4 class="text-lg md:text-xl font-black text-blue-400 uppercase tracking-wide flex items-center space-x-2 font-sans">
+              <span>STEP 2: SWEEP 2 AT 9,500 FT MSL</span>
+            </h4>
+            <span class="text-xs px-2.5 py-1 bg-blue-950 border border-blue-700 text-blue-300 font-bold rounded-lg uppercase">Mid Cruise Check</span>
+          </div>
+          <ul class="space-y-2 text-zinc-100 font-medium">
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.1</span>
+              <span><strong class="text-blue-400 font-black">Climb</strong> <strong class="text-white font-black bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">9,500</strong> FT MSL</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.2</span>
+              <span><strong class="text-amber-300 font-black">Level</strong>, <strong class="text-amber-300 font-black">trim</strong>, <strong class="text-amber-300 font-black">WOT</strong>, <strong class="text-amber-300 font-black">2350</strong> RPM</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.3</span>
+              <span><strong class="text-cyan-300 font-black">13.0</strong> GPH &rarr; <strong class="text-emerald-400 font-black">Pause</strong> 5–10 min <span class="text-xs text-zinc-400 font-sans">(stabilize CHTs)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.4</span>
+              <span><strong class="text-cyan-300 font-black">Lean</strong> <strong class="text-cyan-300 font-black">8.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.5</span>
+              <span><strong class="text-amber-300 font-black">Pause</strong> <strong class="text-amber-300 font-black">8.0</strong> GPH</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.6</span>
+              <span><strong class="text-emerald-300 font-black">Enrich</strong> <strong class="text-emerald-300 font-black">8.0</strong> <strong class="text-emerald-300 font-black">13.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-blue-400 font-bold">2.7</span>
+              <span><strong class="text-emerald-400 font-black">Pause</strong> 5–10 min</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- STEP 3: 11,500 FT -->
+        <div class="bg-zinc-950 p-4 md:p-5 rounded-xl border-2 border-purple-500/40 space-y-3">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
+            <h4 class="text-lg md:text-xl font-black text-purple-400 uppercase tracking-wide flex items-center space-x-2 font-sans">
+              <span>STEP 3: SWEEP 3 AT 11,500 FT MSL</span>
+            </h4>
+            <span class="text-xs px-2.5 py-1 bg-purple-950 border border-purple-700 text-purple-300 font-bold rounded-lg uppercase">Target Cruise Check</span>
+          </div>
+          <ul class="space-y-2 text-zinc-100 font-medium">
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.1</span>
+              <span><strong class="text-purple-400 font-black">Climb</strong> <strong class="text-white font-black bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">11,500</strong> FT MSL</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.2</span>
+              <span><strong class="text-amber-300 font-black">Level</strong>, <strong class="text-amber-300 font-black">trim</strong>, <strong class="text-amber-300 font-black">WOT</strong>, <strong class="text-amber-300 font-black">2350</strong> RPM</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.3</span>
+              <span><strong class="text-cyan-300 font-black">12.0</strong> GPH &rarr; <strong class="text-emerald-400 font-black">Pause</strong> 5–10 min <span class="text-xs text-zinc-400 font-sans">(stabilize CHTs)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.4</span>
+              <span><strong class="text-cyan-300 font-black">Lean</strong> <strong class="text-cyan-300 font-black">8.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.5</span>
+              <span><strong class="text-amber-300 font-black">Pause</strong> <strong class="text-amber-300 font-black">8.0</strong> GPH</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.6</span>
+              <span><strong class="text-emerald-300 font-black">Enrich</strong> <strong class="text-emerald-300 font-black">8.0</strong> <strong class="text-emerald-300 font-black">12.0</strong> GPH over 90 sec <span class="text-xs text-zinc-400 font-sans">(1 GPH every 10 sec)</span></span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-purple-400 font-bold">3.7</span>
+              <span><strong class="text-emerald-400 font-black">Pause</strong> 5–10 min</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- STEP 4: POST-FLIGHT ANALYSIS -->
+        <div class="bg-zinc-950 p-4 md:p-5 rounded-xl border border-zinc-800 space-y-2">
+          <h4 class="text-base md:text-lg font-black text-amber-400 uppercase tracking-wide font-sans border-b border-zinc-800 pb-1">
+            STEP 4: POST-FLIGHT DATA ANALYSIS
+          </h4>
+          <ul class="space-y-1.5 text-zinc-300 text-sm md:text-base">
+            <li class="flex items-center space-x-2">
+              <span class="text-amber-400 font-bold">4.1</span>
+              <span>Download Dynon engine log (or upload to Savvy Aviation)</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <span class="text-amber-400 font-bold">4.2</span>
+              <span>Run dataset pipeline: <code class="text-cyan-300 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">python3 scripts/build_savvy_dataset.py</code></span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <span class="text-amber-400 font-bold">4.3</span>
+              <span>Target GAMI Spread Result: <strong class="text-emerald-400 font-black">&lt; 0.3 GPH</strong></span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2 (BOTTOM): INITIAL CHANGE SET INSTALLATION GUIDE (GROUND USE - SMALLER FONT) -->
+    <!-- ========================================================================= -->
+    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-4">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800 pb-2 gap-1">
+        <h3 class="text-sm md:text-base font-black uppercase tracking-wider text-zinc-300 flex items-center space-x-2">
+          <span>🔧 INITIAL CHANGE SET INSTALLATION GUIDE</span>
+        </h3>
+        <span class="px-2.5 py-0.5 bg-zinc-800 text-zinc-400 text-[11px] font-mono font-bold rounded uppercase">
+          Ground Reference • Maintenance Mode
+        </span>
+      </div>
+
+      <!-- TABLE 1: OVERVIEW & EXPECTED IMPACT -->
+      <div class="space-y-2">
+        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-zinc-400 font-sans">
+          Overview & Expected Tuning Impact
+        </h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+            <thead>
+              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
+                <th class="p-2">Cylinder</th>
+                <th class="p-2">Current Nozzle</th>
+                <th class="p-2">Action & New Installation</th>
+                <th class="p-2">Expected Tuning Result</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-zinc-400">.0285</td><td class="p-2 text-cyan-300">Change to .029 (Move Cyl 2 nozzle)</td><td class="p-2 text-emerald-400">Enriches Cyl 1 &rarr; peaks earlier</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-amber-300">Change to .028 (Move Cyl 5 nozzle)</td><td class="p-2 text-amber-400">Restricts Cyl 2 &rarr; peaks later</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">Keep .0275</td><td class="p-2 text-zinc-400">Solid mid-range anchor</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-zinc-400">Keep .0265</td><td class="p-2 text-zinc-400">Keeps Cyl 4 restricted</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-zinc-400">.0280</td><td class="p-2 text-cyan-300">Install NEW .029</td><td class="p-2 text-emerald-400">Enriches Cyl 5 &rarr; peaks earlier</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-amber-300">Install NEW .027</td><td class="p-2 text-amber-400">Restricts Cyl 6 &rarr; peaks later</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 2: INSTALLATION WORK SEQUENCE (STEPS 1-4) -->
+      <div class="space-y-2 pt-2 border-t border-zinc-800/60">
+        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-400 font-sans">
+          🛠️ Installation Work Sequence (Steps 1–4)
+        </h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+            <thead>
+              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
+                <th class="p-2">Step</th>
+                <th class="p-2">Target Cylinder</th>
+                <th class="p-2">Action Required</th>
+                <th class="p-2">Installed Nozzle</th>
+                <th class="p-2">Nozzle Source / Origin</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 1</td><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2">Install New Restrictor</td><td class="p-2 text-amber-300 font-bold">.027</td><td class="p-2 text-cyan-300">NEW (AFP order)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 2</td><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2">Install New Restrictor</td><td class="p-2 text-cyan-300 font-bold">.029</td><td class="p-2 text-cyan-300">NEW (AFP order)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 3</td><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2">Install Relocated Nozzle</td><td class="p-2 text-amber-300 font-bold">.028</td><td class="p-2 text-zinc-400">Removed from Cylinder 5</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 4</td><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2">Install Relocated Nozzle</td><td class="p-2 text-cyan-300 font-bold">.029</td><td class="p-2 text-zinc-400">Removed from Cylinder 2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-[11px] text-zinc-400 italic font-mono">*Note: Cylinders 3 and 4 require no physical changes and remain at .0275 and .0265 respectively.</p>
+      </div>
+
+      <!-- TABLE 3: FINAL INSTALLED NOZZLE CONFIGURATION -->
+      <div class="space-y-2 pt-2 border-t border-zinc-800/60">
+        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-emerald-400 font-sans">
+          📋 Final Installed Nozzle Configuration (Cylinders 1–6)
+        </h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+            <thead>
+              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
+                <th class="p-2">Cylinder</th>
+                <th class="p-2">Final Nozzle Size</th>
+                <th class="p-2">Baseline Size</th>
+                <th class="p-2">Net Adjustment</th>
+                <th class="p-2">Origin / Source</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0285</td><td class="p-2 text-cyan-300">+.0005 (Enriched)</td><td class="p-2 text-zinc-300">Relocated from Cylinder 2</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-emerald-400 font-bold">.0280</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-amber-300">-.0010 (Restricted)</td><td class="p-2 text-zinc-300">Relocated from Cylinder 5</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-emerald-400 font-bold">.0275</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">0.0000 (Unchanged)</td><td class="p-2 text-zinc-400">Retained Baseline</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-emerald-400 font-bold">.0265</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-zinc-400">0.0000 (Unchanged)</td><td class="p-2 text-zinc-400">Retained Baseline</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0280</td><td class="p-2 text-cyan-300">+.0010 (Enriched)</td><td class="p-2 text-cyan-300">NEW Restrictor</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2 text-emerald-400 font-bold">.0270</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-amber-300">NEW Restrictor</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
   <!-- FOOTER READOUT -->
   <footer class="w-full max-w-5xl mx-auto mt-3 text-center text-[10px] md:text-xs text-zinc-400 font-mono flex justify-between items-center px-1 flex-shrink-0">
     <div class="flex items-center space-x-2">
@@ -751,6 +1061,13 @@
         class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
         <span>CHECKLISTS</span>
+      </button>
+
+      <!-- Tab 4: GAMI Injector Tuning (Furthest Right) -->
+      <button id="nav-btn-gami" onclick="switchModule('gami')" 
+        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        <span>GAMI</span>
       </button>
 
     </div>
@@ -1008,28 +1325,38 @@
       const fuelModule = document.getElementById('module-fuel');
       const kneeboardModule = document.getElementById('module-kneeboard');
       const checklistsModule = document.getElementById('module-checklists');
+      const gamiModule = document.getElementById('module-gami');
 
       const btnFuel = document.getElementById('nav-btn-fuel');
       const btnKneeboard = document.getElementById('nav-btn-kneeboard');
       const btnChecklists = document.getElementById('nav-btn-checklists');
+      const btnGami = document.getElementById('nav-btn-gami');
 
-      fuelModule.classList.add('hidden');
-      kneeboardModule.classList.add('hidden');
-      checklistsModule.classList.add('hidden');
+      const inactiveStyle = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
+      const activeStyle = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
 
-      btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
-      btnKneeboard.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
-      btnChecklists.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
+      if (fuelModule) fuelModule.classList.add('hidden');
+      if (kneeboardModule) kneeboardModule.classList.add('hidden');
+      if (checklistsModule) checklistsModule.classList.add('hidden');
+      if (gamiModule) gamiModule.classList.add('hidden');
 
-      if (moduleName === 'fuel') {
+      if (btnFuel) btnFuel.className = inactiveStyle;
+      if (btnKneeboard) btnKneeboard.className = inactiveStyle;
+      if (btnChecklists) btnChecklists.className = inactiveStyle;
+      if (btnGami) btnGami.className = inactiveStyle;
+
+      if (moduleName === 'fuel' && fuelModule && btnFuel) {
         fuelModule.classList.remove('hidden');
-        btnFuel.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
-      } else if (moduleName === 'kneeboard') {
+        btnFuel.className = activeStyle;
+      } else if (moduleName === 'kneeboard' && kneeboardModule && btnKneeboard) {
         kneeboardModule.classList.remove('hidden');
-        btnKneeboard.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
-      } else if (moduleName === 'checklists') {
+        btnKneeboard.className = activeStyle;
+      } else if (moduleName === 'checklists' && checklistsModule && btnChecklists) {
         checklistsModule.classList.remove('hidden');
-        btnChecklists.className = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
+        btnChecklists.className = activeStyle;
+      } else if (moduleName === 'gami' && gamiModule && btnGami) {
+        gamiModule.classList.remove('hidden');
+        btnGami.className = activeStyle;
       }
 
       resetFlyQNavTimer();
