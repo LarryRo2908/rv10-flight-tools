@@ -1,0 +1,23 @@
+{
+  "name": "RV-10 Flight Tools",
+  "short_name": "RV10 Flight",
+  "description": "Van's RV-10 Cockpit Fuel Tracker, Kneeboard Reference Cards, Checklists & GAMI Tuning PWA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -16,33 +16,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./icon.png">
   <link rel="shortcut icon" href="./apple-touch-icon.png">
 
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              dark: '#09090b',
-              card: '#121215',
-              border: '#27272a',
-              left: '#3b82f6',
-              right: '#10b981'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Offline Tailwind CSS Bundle -->
+  <link rel="stylesheet" href="./css/tailwind.offline.css">
 
-  <!-- Dynamic PWA Manifest Link -->
-  <link id="pwa-manifest" rel="manifest" href="">
+  <!-- Static PWA Manifest -->
+  <link id="pwa-manifest" rel="manifest" href="./manifest.json">
 
   <style>
     /* Cockpit Touch & Navigation Styles */
@@ -86,8 +64,8 @@
 
   <!-- 1. TOP STATUS BAR (NON-SELECTABLE READOUTS) -->
   <header class="w-full max-w-5xl mx-auto flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 mb-3 flex-shrink-0">
-    <!-- GPS Speed Readout -->
-    <div id="gps-status-badge" class="flex items-center space-x-2 text-xs font-mono font-bold text-zinc-400">
+    <!-- GPS Speed Readout (Interactive Cockpit Override) -->
+    <div id="gps-status-badge" onclick="triggerHaptic(20); openGpsManualModal();" class="flex items-center space-x-2 text-xs font-mono font-bold text-zinc-400 cursor-pointer hover:text-white transition-colors py-1 px-2.5 rounded-lg bg-zinc-950/60 border border-zinc-800/80 active:scale-95 shadow-sm" title="Tap to manually start/reset flight timer">
       <span id="gps-dot" class="w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block"></span>
       <span id="gps-text">GPS: N/A</span>
     </div>
@@ -1267,6 +1245,30 @@
     </div>
   </div>
 
+  <!-- GPS MANUAL OVERRIDE & TIMER MODAL -->
+  <div id="gps-manual-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border-2 border-cyan-700/80 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+      <div class="text-center space-y-1">
+        <h3 class="text-lg font-black uppercase text-cyan-400">Flight Timer & GPS Control</h3>
+        <p id="gps-modal-status-subtext" class="text-xs text-zinc-300 font-mono">Current Status: GPS N/A</p>
+      </div>
+
+      <div class="space-y-3">
+        <button onclick="triggerHaptic(40); manualStartTakeoffTimer(); closeGpsManualModal();" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm uppercase tracking-wider shadow-lg flex items-center justify-center space-x-2">
+          <span>⏱️ START / SET TAKEOFF TIMER NOW</span>
+        </button>
+
+        <button onclick="triggerHaptic(20); manualResetTakeoffTimer(); closeGpsManualModal();" class="w-full py-3 bg-zinc-800 hover:bg-red-950 border border-zinc-700 text-red-300 font-bold rounded-xl text-xs uppercase tracking-wider">
+          Reset Flight Timer (Standby)
+        </button>
+
+        <button onclick="triggerHaptic(20); closeGpsManualModal();" class="w-full py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-300 font-bold rounded-xl text-xs uppercase tracking-wider">
+          Close / Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT LOGIC -->
   <script>
     const STORAGE_KEY = 'rv10_fuel_tracker_state_v13';
@@ -1723,78 +1725,138 @@
       `).join('');
     }
 
+    let gpsSourceType = 'none'; // 'stratux', 'device', 'manual', 'none'
+    let sustained60KtTimer = null;
+
+    function openGpsManualModal() {
+      const modal = document.getElementById('gps-manual-modal');
+      const sub = document.getElementById('gps-modal-status-subtext');
+      if (modal) {
+        if (state.flightStarted && state.flightStartTime) {
+          sub.textContent = `Flight Active • Takeoff: ${formatUtc24(state.flightStartTime)} • Source: ${gpsSourceType.toUpperCase()}`;
+        } else {
+          sub.textContent = `Standing By • Source: ${gpsSourceType.toUpperCase()}`;
+        }
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeGpsManualModal() {
+      const modal = document.getElementById('gps-manual-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function manualStartTakeoffTimer() {
+      state.flightStarted = true;
+      state.flightStartTime = Date.now();
+      gpsSourceType = 'manual';
+      saveState();
+      renderUI();
+    }
+
+    function manualResetTakeoffTimer() {
+      state.flightStarted = false;
+      state.flightStartTime = null;
+      gpsSourceType = 'none';
+      saveState();
+      renderUI();
+    }
+
+    function updateGpsSpeed(speedKnots, sourceName) {
+      const gpsDot = document.getElementById('gps-dot');
+      const gpsText = document.getElementById('gps-text');
+
+      state.gpsSpeedKnots = speedKnots;
+      gpsSourceType = sourceName;
+
+      const label = sourceName === 'stratux' ? `GPS: ${speedKnots} KTS (Stratux)` : `GPS: ${speedKnots} KTS`;
+      gpsText.textContent = label;
+      gpsDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse";
+
+      if (speedKnots > 60.0 && !state.flightStarted) {
+        if (!sustained60KtTimer) {
+          sustained60KtTimer = setTimeout(() => {
+            state.flightStarted = true;
+            state.flightStartTime = Date.now();
+            saveState();
+            renderUI();
+          }, 10000);
+        }
+      } else {
+        if (sustained60KtTimer) {
+          clearTimeout(sustained60KtTimer);
+          sustained60KtTimer = null;
+        }
+      }
+    }
+
+    async function pollStratuxGps() {
+      const targets = ['http://192.168.10.1/api/v1/situation', 'http://stratux.local/api/v1/situation'];
+      for (const url of targets) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 1500);
+          const response = await fetch(url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data && typeof data.GPSGroundSpeed === 'number' && data.GPSFixQuality > 0) {
+              const speedKnots = round1(data.GPSGroundSpeed);
+              updateGpsSpeed(speedKnots, 'stratux');
+              return true;
+            }
+          }
+        } catch (e) {
+          // Stratux unreachable
+        }
+      }
+      return false;
+    }
+
     function initGPS() {
       const gpsDot = document.getElementById('gps-dot');
       const gpsText = document.getElementById('gps-text');
 
-      if (!('geolocation' in navigator)) return;
-
-      let sustained60KtTimer = null;
-
-      navigator.geolocation.watchPosition(
-        (position) => {
-          const speedMps = position.coords.speed;
-          if (speedMps !== null && !isNaN(speedMps)) {
-            const speedKnots = round1(speedMps * 1.94384);
-            state.gpsSpeedKnots = speedKnots;
-            gpsText.textContent = `GPS: ${speedKnots} KTS`;
-            gpsDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse";
-
-            if (speedKnots > 60.0 && !state.flightStarted) {
-              if (!sustained60KtTimer) {
-                sustained60KtTimer = setTimeout(() => {
-                  state.flightStarted = true;
-                  state.flightStartTime = Date.now();
-                  saveState();
-                  renderUI();
-                }, 10000);
-              }
-            } else {
-              if (sustained60KtTimer) {
-                clearTimeout(sustained60KtTimer);
-                sustained60KtTimer = null;
-              }
-            }
-          }
-        },
-        () => {
+      // 1. Poll Stratux REST API over Wi-Fi
+      setInterval(async () => {
+        const stratuxActive = await pollStratuxGps();
+        if (!stratuxActive && gpsSourceType === 'stratux') {
+          gpsSourceType = 'none';
           gpsText.textContent = "GPS: N/A";
           gpsDot.className = "w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block";
-        },
-        { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
-      );
+        }
+      }, 2500);
+
+      // 2. HTML5 Geolocation (Native Bluetooth GPS & Cellular iPad fallback)
+      if ('geolocation' in navigator) {
+        navigator.geolocation.watchPosition(
+          (position) => {
+            const speedMps = position.coords.speed;
+            if (speedMps !== null && !isNaN(speedMps) && gpsSourceType !== 'stratux') {
+              const speedKnots = round1(speedMps * 1.94384);
+              updateGpsSpeed(speedKnots, 'device');
+            }
+          },
+          () => {
+            if (gpsSourceType === 'device') {
+              gpsSourceType = 'none';
+              gpsText.textContent = "GPS: N/A";
+              gpsDot.className = "w-2.5 h-2.5 rounded-full bg-zinc-600 inline-block";
+            }
+          },
+          { enableHighAccuracy: true, maximumAge: 3000, timeout: 5000 }
+        );
+      }
     }
 
     function setupPWA() {
-      const manifest = {
-        name: "RV-10 Flight Tools",
-        short_name: "RV10 Flight",
-        start_url: "./index.html",
-        display: "standalone",
-        background_color: "#09090b",
-        theme_color: "#09090b",
-        orientation: "portrait",
-        icons: [
-          {
-            src: "./apple-touch-icon.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable"
-          }
-        ]
-      };
-      
-      const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-      document.getElementById('pwa-manifest').href = URL.createObjectURL(manifestBlob);
-
       if ('serviceWorker' in navigator) {
-        const swCode = `
-          self.addEventListener('install', e => self.skipWaiting());
-          self.addEventListener('activate', e => clients.claim());
-          self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(res => res || fetch(e.request))));
-        `;
-        const swBlob = new Blob([swCode], { type: 'text/javascript' });
-        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+        navigator.serviceWorker.register('./sw.js').then(reg => {
+          console.log('[PWA] ServiceWorker registered:', reg.scope);
+        }).catch(err => {
+          console.warn('[PWA] ServiceWorker registration failed:', err);
+        });
       }
     }
 
