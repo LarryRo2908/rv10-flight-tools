@@ -58,6 +58,61 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* Bottom Navigation Bar Styles */
+    #flyq-bottom-nav {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #flyq-bottom-nav.nav-hidden {
+      opacity: 0;
+      transform: translate(-50%, 1rem);
+      pointer-events: none;
+    }
+    #flyq-bottom-nav.nav-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+    }
+    .flyq-nav-btn {
+      padding: 0.625rem 1rem;
+      border-radius: 0.75rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    @media (min-width: 768px) {
+      .flyq-nav-btn {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+    }
+    .flyq-nav-btn-inactive {
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #27272a;
+    }
+    .flyq-nav-btn-inactive:hover {
+      background-color: #18181b;
+      color: #ffffff;
+    }
+    .flyq-nav-btn-active {
+      background-color: #2563eb;
+      color: #ffffff;
+      border: 1px solid #60a5fa;
+      box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+    }
   </style>
 </head>
 <body class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col justify-between p-3 md:p-6 font-sans select-none">
@@ -1013,35 +1068,35 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- FLYQ-STYLE AUTO-HIDING 10-SECOND CYAN BOTTOM NAVIGATION BAR -->
+  <!-- FLYQ-STYLE AUTO-HIDING 10-SECOND BOTTOM NAVIGATION BAR -->
   <!-- ========================================================================= -->
-  <nav id="flyq-bottom-nav" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 opacity-0 translate-y-4 pointer-events-none">
+  <nav id="flyq-bottom-nav" class="nav-hidden">
     <div class="bg-black border-2 border-zinc-700 rounded-2xl shadow-2xl p-1.5 flex items-center space-x-2 backdrop-blur-xl">
       
       <!-- Tab 1: Fuel Tracker -->
       <button id="nav-btn-fuel" onclick="switchModule('fuel')" 
-        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30">
+        class="flyq-nav-btn flyq-nav-btn-active">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
         <span>FUEL</span>
       </button>
 
       <!-- Tab 2: Kneeboard / Cards -->
       <button id="nav-btn-kneeboard" onclick="switchModule('kneeboard')" 
-        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        class="flyq-nav-btn flyq-nav-btn-inactive">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
         <span>KNEEBOARD</span>
       </button>
 
       <!-- Tab 3: Checklists -->
       <button id="nav-btn-checklists" onclick="switchModule('checklists')" 
-        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        class="flyq-nav-btn flyq-nav-btn-inactive">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
         <span>CHECKLISTS</span>
       </button>
 
       <!-- Tab 4: GAMI Injector Tuning (Furthest Right) -->
       <button id="nav-btn-gami" onclick="switchModule('gami')" 
-        class="px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800">
+        class="flyq-nav-btn flyq-nav-btn-inactive">
         <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         <span>GAMI</span>
       </button>
@@ -1296,20 +1351,22 @@
       const nav = document.getElementById('flyq-bottom-nav');
       const switchScreen = document.getElementById('switch-tanks-screen');
 
+      if (!nav) return;
+
       if (switchScreen && !switchScreen.classList.contains('hidden')) {
-        nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-        nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        nav.classList.add('nav-hidden');
+        nav.classList.remove('nav-visible');
         return;
       }
 
-      nav.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-      nav.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      nav.classList.remove('nav-hidden');
+      nav.classList.add('nav-visible');
 
       if (navHideTimer) clearTimeout(navHideTimer);
 
       navHideTimer = setTimeout(() => {
-        nav.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-        nav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        nav.classList.add('nav-hidden');
+        nav.classList.remove('nav-visible');
       }, 10000);
     }
 
@@ -1332,8 +1389,8 @@
       const btnChecklists = document.getElementById('nav-btn-checklists');
       const btnGami = document.getElementById('nav-btn-gami');
 
-      const inactiveStyle = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all text-zinc-300 hover:text-white hover:bg-zinc-800";
-      const activeStyle = "px-4 py-2.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-wider flex items-center space-x-2 transition-all bg-cyan-400 text-black shadow-lg shadow-cyan-500/30";
+      const inactiveStyle = "flyq-nav-btn flyq-nav-btn-inactive";
+      const activeStyle = "flyq-nav-btn flyq-nav-btn-active";
 
       if (fuelModule) fuelModule.classList.add('hidden');
       if (kneeboardModule) kneeboardModule.classList.add('hidden');
