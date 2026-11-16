@@ -358,135 +358,183 @@
       </div>
     </div>
 
-    <!-- 4. ENGINE & FLIGHT PHASE MANAGEMENT CHECKLIST -->
+    <!-- 4. TAKEOFF & CLIMB FLIGHT PHASE CHECKLIST -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
-      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        4. ENGINE &amp; FLIGHT PHASE MANAGEMENT CHECKLIST
-      </h3>
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+        <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300">
+          4. TAKEOFF &amp; CLIMB FLIGHT PHASE CHECKLIST
+        </h3>
+        <span class="px-2.5 py-0.5 bg-blue-900/60 border border-blue-500/50 text-blue-300 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider">
+          Airspeed &amp; VSI Rules
+        </span>
+      </div>
       <div class="overflow-x-auto rounded-xl border border-zinc-800">
         <table class="w-full text-left font-mono text-xs md:text-sm">
           <thead class="bg-zinc-950 text-zinc-300 uppercase text-xs tracking-wider border-b-2 border-zinc-700">
             <tr>
               <th class="p-3">Flight Phase</th>
-              <th class="p-3">Throttle</th>
-              <th class="p-3">Propeller</th>
+              <th class="p-3">Airspeed / VSI</th>
+              <th class="p-3">Throttle / Prop</th>
               <th class="p-3">Mixture</th>
-              <th class="p-3">Target IAS</th>
+              <th class="p-3">Cockpit Priority &amp; Actions</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-800">
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">Takeoff Roll to 1,000' AGL</td>
-              <td class="p-3 font-bold text-emerald-400">WOT</td>
-              <td class="p-3 font-bold text-blue-400">FULL FORWARD (2600)</td>
-              <td class="p-3 font-black text-amber-400 text-base">FULL RICH (~23.5 GPH)</td>
-              <td class="p-3 font-mono text-cyan-300 font-bold">105–115 KIAS</td>
+              <td class="p-3 font-bold text-white whitespace-nowrap">Takeoff Roll to 500' AGL</td>
+              <td class="p-3 font-mono text-cyan-300 font-bold whitespace-nowrap">95–105 KIAS (Vy)</td>
+              <td class="p-3 text-emerald-400 font-bold whitespace-nowrap">WOT / FULL FWD</td>
+              <td class="p-3 font-black text-amber-400 whitespace-nowrap">FULL RICH (~23.5 G)</td>
+              <td class="p-3 font-sans text-zinc-300 text-xs">Clear obstacles. Wings level. Positive rate of climb.</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">Pattern Downwind (1,000')</td>
-              <td class="p-3 font-bold text-zinc-200">15" – 17" MAP</td>
-              <td class="p-3 font-sans text-zinc-300">Full Forward (or 2400)</td>
-              <td class="p-3 font-black text-amber-400 text-base">FULL RICH</td>
-              <td class="p-3 font-mono text-cyan-300 font-bold">100–105 KIAS</td>
+              <td class="p-3 font-bold text-cyan-300 whitespace-nowrap">500' AGL Push</td>
+              <td class="p-3 font-mono text-emerald-300 font-black text-sm whitespace-nowrap">PUSH TO 135 KIAS</td>
+              <td class="p-3 text-emerald-400 font-bold whitespace-nowrap">WOT / 2500 RPM</td>
+              <td class="p-3 font-black text-amber-400 whitespace-nowrap">FULL RICH</td>
+              <td class="p-3 font-sans text-emerald-300 text-xs font-bold">⚡ Ram Air Cooling Push: Lower nose immediately to arrest CHT spike.</td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">Pattern Final</td>
-              <td class="p-3 font-sans text-zinc-300">As needed (10–13" MAP)</td>
-              <td class="p-3 font-bold text-blue-400">FULL FORWARD</td>
-              <td class="p-3 font-black text-amber-400 text-base">FULL RICH</td>
-              <td class="p-3 font-mono text-cyan-300 font-bold">75–80 KIAS</td>
+              <td class="p-3 font-bold text-amber-400 whitespace-nowrap">500' to 2,000' MSL<br><span class="text-[10px] text-zinc-400 font-normal">Peak Workload Gate</span></td>
+              <td class="p-3 font-mono text-cyan-300 font-bold whitespace-nowrap">130–135 KIAS</td>
+              <td class="p-3 text-zinc-300 whitespace-nowrap">WOT / 2500 RPM</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-amber-300 rounded font-bold text-xs">FULL RICH</span><br><span class="text-[10px] text-zinc-400">(Leaning Optional)</span></td>
+              <td class="p-3 font-sans text-zinc-300 text-xs"><strong class="text-white">HEADS UP / ATC FOCUS:</strong> Contact departure, altitude restriction, altimeter, vectors. Don't fiddle with mixture!</td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">En-Route Climb (1k' to 4k')</td>
-              <td class="p-3 font-bold text-emerald-400">WOT</td>
-              <td class="p-3 font-bold text-blue-400">2400 RPM</td>
-              <td class="p-3 font-black text-amber-400 text-base">18.0 GPH</td>
-              <td class="p-3 font-mono text-cyan-300 font-bold">125–135 KIAS</td>
+              <td class="p-3 font-bold text-cyan-300 whitespace-nowrap">2,000' to 4,000' MSL</td>
+              <td class="p-3 font-mono text-cyan-300 font-bold whitespace-nowrap">130–135 KIAS<br><span class="text-[10px] text-zinc-400">(VSI &gt; 700 fpm)</span></td>
+              <td class="p-3 text-zinc-300 whitespace-nowrap">WOT / 2500 RPM</td>
+              <td class="p-3 font-mono text-amber-300 font-bold whitespace-nowrap">17.0 GPH<br><span class="text-[10px] text-zinc-400">(When bandwidth allows)</span></td>
+              <td class="p-3 font-sans text-zinc-300 text-xs">Normal en-route climb. Maintain 130–135 kts for high cooling airflow.</td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">Level Cruise @ 4,000'</td>
-              <td class="p-3 font-sans text-zinc-300">23" – 25" MAP (or WOT)</td>
-              <td class="p-3 font-bold text-blue-400">2350 – 2400 RPM</td>
-              <td class="p-3 font-black text-emerald-400 text-base">10.5 – 11.0 GPH (LOP)</td>
-              <td class="p-3 font-mono text-cyan-300 font-bold">140–150 KIAS</td>
+              <td class="p-3 font-bold text-amber-300 whitespace-nowrap">~3,500' to 5,000' MSL<br><span class="text-[10px] text-cyan-400 font-normal">Climb Rate Transition</span></td>
+              <td class="p-3 font-mono text-amber-300 font-black text-sm whitespace-nowrap">TRANSITION 115 KT<br><span class="text-[10px] text-zinc-400">(When VSI &lt; 700 fpm)</span></td>
+              <td class="p-3 text-zinc-300 whitespace-nowrap">WOT / 2500 RPM</td>
+              <td class="p-3 font-mono text-amber-300 font-bold whitespace-nowrap">16.0 GPH</td>
+              <td class="p-3 font-sans text-zinc-300 text-xs"><strong class="text-white">Speed Transition:</strong> Pitch up to 115–120 KIAS to restore climb rate to 800+ fpm.</td>
+            </tr>
+            <tr class="bg-red-950/40 border-l-4 border-red-500 hover:bg-red-900/40">
+              <td class="p-3 font-bold text-red-300 whitespace-nowrap">Passing 5,000' MSL<br><span class="px-1.5 py-0.5 bg-red-800 text-white rounded text-[10px] font-black uppercase tracking-wider">MANDATORY</span></td>
+              <td class="p-3 font-mono text-cyan-300 font-bold whitespace-nowrap">115 KIAS</td>
+              <td class="p-3 text-zinc-300 whitespace-nowrap">WOT / 2500 RPM</td>
+              <td class="p-3 font-black text-red-400 text-sm whitespace-nowrap">LEAN &le; 16.0 GPH<br><span class="text-[10px] text-red-300 font-bold uppercase">(MANDATORY GATE)</span></td>
+              <td class="p-3 font-sans text-red-200 text-xs font-semibold">⚠️ Prevents rich misfire, plug lead fouling, and climb power loss from thin altitude air.</td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white whitespace-nowrap">Level-Off (&lt; 6,000')</td>
+              <td class="p-3 font-mono text-emerald-300 font-bold whitespace-nowrap">140–145 KIAS</td>
+              <td class="p-3 font-bold text-amber-300 whitespace-nowrap">RETARD 22–24" MAP<br><span class="text-[10px] text-zinc-400">Prop 2300–2400</span></td>
+              <td class="p-3 text-emerald-400 font-bold whitespace-nowrap">Lean to Cruise<br><span class="text-[10px] text-zinc-400">(LOP or ROP)</span></td>
+              <td class="p-3 font-sans text-amber-200 text-xs font-bold">⚡ PREVENT YELLOW ARC: Retard throttle BEFORE airspeed reaches 150 kts (Vno 156 kts).</td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white whitespace-nowrap">Level-Off (&ge; 8,000')</td>
+              <td class="p-3 font-mono text-cyan-300 font-bold whitespace-nowrap">Accelerate (160+ KTAS)</td>
+              <td class="p-3 text-emerald-400 font-bold whitespace-nowrap">LEAVE WOT<br><span class="text-[10px] text-zinc-400">Prop 2300–2400</span></td>
+              <td class="p-3 font-black text-emerald-400 text-sm whitespace-nowrap">10.5–11.0 GPH<br><span class="text-[10px] text-emerald-300 font-bold">(LOP Cruise)</span></td>
+              <td class="p-3 font-sans text-zinc-300 text-xs">Cannot over-power airframe at high altitude. Smooth big pull past peak into LOP.</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 5. CLIMB ALTITUDE LEANING SCHEDULE (OAT < 80°F) -->
+    <!-- 5. FUEL FLOW MANAGEMENT & CLIMB LEANING SCHEDULE -->
     <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-3">
-      <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800 pb-2">
-        5. CLIMB ALTITUDE LEANING SCHEDULE (OAT &lt; 80°F)
-      </h3>
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-2">
+        <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300">
+          5. FUEL FLOW MANAGEMENT &amp; CLIMB LEANING SCHEDULE
+        </h3>
+        <span class="px-2.5 py-0.5 bg-amber-900/60 border border-amber-500/50 text-amber-300 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider">
+          OAT &lt; 80°F
+        </span>
+      </div>
+
+      <!-- WORKLOAD SAFETY CALLOUT BANNER -->
+      <div class="p-3 bg-zinc-950 border border-zinc-700/80 rounded-xl flex items-start space-x-3">
+        <span class="text-amber-400 text-lg">💡</span>
+        <div class="text-xs text-zinc-300 space-y-0.5">
+          <strong class="text-amber-300 font-bold block">Cockpit Workload Safety Rule:</strong>
+          <span>Below 4,000' MSL, mixture leaning is <strong class="text-white">OPTIONAL</strong>. If busy with ATC or departure vectors, leave mixture <strong class="text-emerald-400">Full Rich</strong>. Passing <strong class="text-red-400">5,000' MSL</strong>, leaning becomes <strong class="text-red-400">MANDATORY</strong> to prevent altitude over-enrichment and plug fouling.</span>
+        </div>
+      </div>
+
       <div class="overflow-x-auto rounded-xl border border-zinc-800">
         <table class="w-full text-left font-mono text-xs md:text-sm">
           <thead class="bg-zinc-950 text-zinc-300 uppercase text-xs tracking-wider border-b-2 border-zinc-700">
             <tr>
-              <th class="p-3">Altimeter (MSL)</th>
+              <th class="p-3">Altitude / Phase</th>
               <th class="p-3">Target GPH</th>
-              <th class="p-3">Avg EGT Target</th>
-              <th class="p-3">Cyl #4 EGT</th>
+              <th class="p-3">Target EGT</th>
               <th class="p-3">Cockpit Action</th>
+              <th class="p-3">Operational Status</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-800">
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">Takeoff (SL)</td>
-              <td class="p-3 font-black text-amber-400 text-base">~21.2 GPH</td>
+              <td class="p-3 font-bold text-white whitespace-nowrap">Ground Taxi &amp; Warmup</td>
+              <td class="p-3 font-mono text-zinc-300 whitespace-nowrap">Lean for Taxi</td>
+              <td class="p-3 text-zinc-400">~1,100°F</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">Pull mixture ~1.5–2" back until stumble on throttle. Warm oil &ge; 110°F.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-red-950 border border-red-700 text-red-300 rounded font-bold text-[10px] uppercase">MANDATORY</span><br><span class="text-[10px] text-zinc-400">Stops plug &amp; CHT soak</span></td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-white whitespace-nowrap">Takeoff Roll to 500'</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">~23.5 GPH</td>
               <td class="p-3 text-amber-300">~1,180°F</td>
-              <td class="p-3 font-bold text-red-400">~1,240°F</td>
-              <td class="p-3 font-sans font-bold text-emerald-400">Full Rich for Takeoff</td>
-            </tr>
-            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">1,000 ft AGL</td>
-              <td class="p-3 font-black text-amber-400 text-base">18.0 GPH</td>
-              <td class="p-3 text-amber-300 font-bold">~1,270°F</td>
-              <td class="p-3 font-bold text-red-400">~1,325°F</td>
-              <td class="p-3 font-sans font-bold text-cyan-300">Set Initial Lean passing 1,000 AGL (120–125 KIAS)</td>
+              <td class="p-3 font-sans font-bold text-emerald-400 text-xs">Full Rich for Takeoff Roll. Max evaporative cooling.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-red-950 border border-red-700 text-red-300 rounded font-bold text-[10px] uppercase">MANDATORY</span></td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">2,000 – 4,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">17.0 GPH</td>
+              <td class="p-3 font-bold text-cyan-300 whitespace-nowrap">1,000' to 2,000' AGL</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">18.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,270°F</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">Lean ~2 full turns passing 1,000 AGL (135 KIAS).</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-cyan-300 rounded font-bold text-[10px] uppercase">OPTIONAL</span><br><span class="text-[10px] text-zinc-400">Skip if busy w/ ATC</span></td>
+            </tr>
+            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-cyan-300 whitespace-nowrap">2,000' – 4,000' MSL</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">17.0 GPH</td>
               <td class="p-3 text-amber-300">~1,280°F</td>
-              <td class="p-3 font-bold text-red-400">~1,335°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">Lean ~1 full turn when workload eases. Target Cyl #4 ~1,335°F.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-cyan-300 rounded font-bold text-[10px] uppercase">OPTIONAL</span></td>
+            </tr>
+            <tr class="bg-red-950/40 border-l-4 border-red-500 hover:bg-red-900/40">
+              <td class="p-3 font-bold text-red-300 whitespace-nowrap">4,000' – 6,000' MSL<br><span class="text-[10px] text-red-400 font-bold uppercase">Gate @ 5,000'</span></td>
+              <td class="p-3 font-black text-red-400 text-base whitespace-nowrap">16.0 GPH</td>
+              <td class="p-3 text-amber-300 font-bold">~1,314°F</td>
+              <td class="p-3 font-sans text-red-200 text-xs font-semibold">Lean to &le; 16.0 GPH. Prevents rich stumbling &amp; plug fouling.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-red-800 text-white rounded font-bold text-[10px] uppercase tracking-wider">MANDATORY @ 5K</span></td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">4,000 – 6,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">16.0 GPH</td>
-              <td class="p-3 text-amber-300">~1,314°F</td>
-              <td class="p-3 font-bold text-red-400">~1,365°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH (~1 full turn)</td>
-            </tr>
-            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">6,000 – 8,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">15.0 GPH</td>
+              <td class="p-3 font-bold text-white whitespace-nowrap">6,000' – 8,000' MSL</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">15.0 GPH</td>
               <td class="p-3 text-amber-300">~1,320°F</td>
-              <td class="p-3 font-bold text-red-400">~1,365°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH</td>
-            </tr>
-            <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">8,000 – 10,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">14.0 GPH</td>
-              <td class="p-3 text-amber-300">~1,314°F</td>
-              <td class="p-3 font-bold text-red-400">~1,355°F</td>
-              <td class="p-3 font-sans text-zinc-300">Lean ~1.0 GPH</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">Lean ~1 full turn. Pitch 115 KIAS. Avg EGT ~1,320°F.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-emerald-400 rounded font-bold text-[10px] uppercase">RECOMMENDED</span></td>
             </tr>
             <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-white">10,000 – 12,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">12.8 GPH</td>
-              <td class="p-3 text-amber-300">~1,287°F</td>
-              <td class="p-3 font-bold text-red-400">~1,325°F</td>
-              <td class="p-3 font-sans text-zinc-300">WOT / Fine Adjust</td>
+              <td class="p-3 font-bold text-cyan-300 whitespace-nowrap">8,000' – 10,000' MSL</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">14.0 GPH</td>
+              <td class="p-3 text-amber-300">~1,314°F</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">Lean ~1 full turn. WOT. Engine making &lt; 75% power.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-emerald-400 rounded font-bold text-[10px] uppercase">RECOMMENDED</span></td>
             </tr>
             <tr class="bg-zinc-900/90 hover:bg-zinc-800/50">
-              <td class="p-3 font-bold text-cyan-300">12,000 – 14,000 ft</td>
-              <td class="p-3 font-black text-amber-400 text-base">12.2 GPH</td>
-              <td class="p-3 text-amber-300">~1,257°F</td>
-              <td class="p-3 font-bold text-red-400">~1,288°F</td>
-              <td class="p-3 font-sans font-bold text-emerald-400">Transition to Cruise (set ~11.0 GPH LOP)</td>
+              <td class="p-3 font-bold text-white whitespace-nowrap">10,000' – 12,000' MSL</td>
+              <td class="p-3 font-black text-amber-400 text-base whitespace-nowrap">12.8 GPH</td>
+              <td class="p-3 text-amber-300">~1,287°F</td>
+              <td class="p-3 font-sans text-zinc-200 text-xs">WOT / Fine adjust for smooth climb. Cold air.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 text-emerald-400 rounded font-bold text-[10px] uppercase">RECOMMENDED</span></td>
+            </tr>
+            <tr class="bg-zinc-950/90 hover:bg-zinc-800/50">
+              <td class="p-3 font-bold text-emerald-400 whitespace-nowrap">Level Cruise (Any Alt)</td>
+              <td class="p-3 font-black text-emerald-400 text-base whitespace-nowrap">10.5–11.0 GPH</td>
+              <td class="p-3 text-emerald-300">~1,360°F LOP</td>
+              <td class="p-3 font-sans font-bold text-emerald-400 text-xs">Smooth pull past peak into Lean of Peak (LOP). CHTs &lt; 350°F.</td>
+              <td class="p-3 whitespace-nowrap"><span class="px-2 py-0.5 bg-emerald-950 border border-emerald-700 text-emerald-300 rounded font-bold text-[10px] uppercase">CRUISE MODE</span></td>
             </tr>
           </tbody>
         </table>
