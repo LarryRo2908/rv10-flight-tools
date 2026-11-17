@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rv10-flight-tools-v1.1.3';
+const CACHE_NAME = 'rv10-flight-tools-v1.1.4';
 
 const ASSETS_TO_CACHE = [
   './',
