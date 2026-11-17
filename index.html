@@ -1081,7 +1081,7 @@
       <!-- TABLE 1: OVERVIEW & EXPECTED IMPACT -->
       <div class="space-y-2">
         <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-zinc-400 font-sans">
-          Overview & Expected Tuning Impact (Round 3 Optimization)
+          Overview & Expected Tuning Impact (Round 4 Optimization)
         </h4>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
@@ -1095,7 +1095,7 @@
             </thead>
             <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-zinc-400">Keep .0290</td><td class="p-2 text-zinc-400">Enriched anchor (~10.5 GPH)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-zinc-400">.0270</td><td class="p-2 text-amber-300 font-bold">Change to .0265 (Install .0265)</td><td class="p-2 text-amber-400 font-bold">Restricts Cyl 2 &rarr; peaks later (~10.7 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-emerald-300 font-bold">Change to .0280 (Install .0280 from hangar inventory)</td><td class="p-2 text-emerald-400 font-bold">Enriches Cyl 2 &rarr; shifts peak to match pack (~11.0–11.3 GPH) &amp; cools climb CHT</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">Keep .0275</td><td class="p-2 text-zinc-400">Solid mid-range anchor (~10.6 GPH)</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-zinc-400">.0260</td><td class="p-2 text-zinc-400">Keep .0260</td><td class="p-2 text-zinc-400">Aligned pack anchor (~10.7 GPH)</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-zinc-400">Keep .0290</td><td class="p-2 text-zinc-400">Enriched anchor (~10.6 GPH)</td></tr>
@@ -1122,7 +1122,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 1</td><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2">Install Relocated Restrictor</td><td class="p-2 text-amber-300 font-bold">.0265</td><td class="p-2 text-cyan-300">Hangar Inventory (ex-Cyl 4)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 1</td><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2">Install Relocated Restrictor</td><td class="p-2 text-emerald-300 font-bold">.0280</td><td class="p-2 text-cyan-300">Hangar Inventory (ex-Cyl 5)</td></tr>
             </tbody>
           </table>
         </div>
@@ -1147,7 +1147,7 @@
             </thead>
             <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0285</td><td class="p-2 text-cyan-300">+.0005 (Enriched)</td><td class="p-2 text-zinc-300">Relocated from Cyl 2</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-emerald-400 font-bold">.0265</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-amber-300">-.0025 (Restricted)</td><td class="p-2 text-amber-300">Hangar Inventory (ex-Cyl 4)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-emerald-400 font-bold">.0280</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-cyan-300">-.0010 (Enriched vs .0265)</td><td class="p-2 text-emerald-300">Hangar Inventory (ex-Cyl 5)</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-emerald-400 font-bold">.0275</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">0.0000 (Unchanged)</td><td class="p-2 text-zinc-400">Retained Baseline</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-emerald-400 font-bold">.0260</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-amber-300">Inventory (.026)</td></tr>
               <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0280</td><td class="p-2 text-cyan-300">+.0010 (Enriched)</td><td class="p-2 text-cyan-300">NEW Restrictor</td></tr>
