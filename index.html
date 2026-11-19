@@ -1065,96 +1065,82 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- SECTION 2 (BOTTOM): RESTRICTOR CHANGE SET INSTALLATION GUIDE (GROUND USE - SMALLER FONT) -->
     <!-- ========================================================================= -->
-    <div class="bg-zinc-900 border-2 border-zinc-800 rounded-2xl p-4 md:p-5 space-y-4">
+    <!-- SECTION 2 (BOTTOM): FINAL INSTALLED NOZZLE SIZES & HANGAR INVENTORY -->
+    <!-- ========================================================================= -->
+    <div class="bg-zinc-900 border-2 border-emerald-500/50 rounded-2xl p-4 md:p-5 space-y-4">
       
       <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800 pb-2 gap-1">
-        <h3 class="text-sm md:text-base font-black uppercase tracking-wider text-zinc-300 flex items-center space-x-2">
-          <span>🔧 RESTRICTOR CHANGE SET INSTALLATION GUIDE</span>
+        <h3 class="text-sm md:text-base font-black uppercase tracking-wider text-emerald-400 flex items-center space-x-2">
+          <span>🎯 FINAL GAMI TUNING STATUS • COMPLETE</span>
         </h3>
-        <span class="px-2.5 py-0.5 bg-zinc-800 text-zinc-400 text-[11px] font-mono font-bold rounded uppercase">
-          Ground Reference • Maintenance Mode
+        <span class="px-2.5 py-0.5 bg-emerald-950 border border-emerald-700 text-emerald-300 text-[11px] font-mono font-bold rounded uppercase">
+          Tuning Complete • No Further Testing
         </span>
       </div>
 
-      <!-- TABLE 1: OVERVIEW & EXPECTED IMPACT -->
+      <!-- STATUS & COMPLETION CALLOUT -->
+      <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-xs md:text-sm font-mono space-y-1">
+        <div class="flex items-center space-x-2">
+          <span class="text-emerald-400 font-bold">✓ FINAL STATUS:</span>
+          <span class="text-white font-bold">Tuning certified complete. No further testing required.</span>
+        </div>
+        <div class="text-zinc-400 text-[11px]">
+          Final test run was on <strong class="text-amber-300">10/18/2026 (11/18/2026)</strong>. GAMI spread verified at <strong class="text-emerald-400 font-bold">0.40–0.50 GPH</strong> with smooth Lean-of-Peak operation across all 6 cylinders.
+        </div>
+      </div>
+
+      <!-- TABLE 1: ACTIVE INSTALLED NOZZLE SIZES -->
       <div class="space-y-2">
-        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-zinc-400 font-sans">
-          Overview & Expected Tuning Impact (Round 4 Optimization)
+        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-zinc-300 font-sans">
+          📋 Installed Injector Nozzle Sizes (Cylinders 1–6)
         </h4>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
             <thead>
               <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
                 <th class="p-2">Cylinder</th>
-                <th class="p-2">Current Nozzle</th>
-                <th class="p-2">Action & New Installation</th>
-                <th class="p-2">Expected Tuning Result</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-zinc-400">Keep .0290</td><td class="p-2 text-zinc-400">Enriched anchor (~10.5 GPH)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-emerald-300 font-bold">Change to .0280 (Install .0280 from hangar inventory)</td><td class="p-2 text-emerald-400 font-bold">Enriches Cyl 2 &rarr; shifts peak to match pack (~11.0–11.3 GPH) &amp; cools climb CHT</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">Keep .0275</td><td class="p-2 text-zinc-400">Solid mid-range anchor (~10.6 GPH)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-zinc-400">.0260</td><td class="p-2 text-zinc-400">Keep .0260</td><td class="p-2 text-zinc-400">Aligned pack anchor (~10.7 GPH)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-zinc-400">Keep .0290</td><td class="p-2 text-zinc-400">Enriched anchor (~10.6 GPH)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2 text-zinc-400">.0270</td><td class="p-2 text-zinc-400">Keep .0270</td><td class="p-2 text-zinc-400">Restricted anchor (~10.6 GPH)</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- TABLE 2: INSTALLATION WORK SEQUENCE (STEP 1) -->
-      <div class="space-y-2 pt-2 border-t border-zinc-800/60">
-        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-400 font-sans">
-          🛠️ Installation Work Sequence (Step 1)
-        </h4>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
-            <thead>
-              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
-                <th class="p-2">Step</th>
-                <th class="p-2">Target Cylinder</th>
-                <th class="p-2">Action Required</th>
                 <th class="p-2">Installed Nozzle</th>
-                <th class="p-2">Nozzle Source / Origin</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-amber-400">Step 1</td><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2">Install Relocated Restrictor</td><td class="p-2 text-emerald-300 font-bold">.0280</td><td class="p-2 text-cyan-300">Hangar Inventory (ex-Cyl 5)</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-[11px] text-zinc-400 italic font-mono">*Note: Cylinders 1, 3, 4, 5, and 6 require no physical changes and remain at .0290, .0275, .0260, .0290, and .0270 respectively.</p>
-      </div>
-
-      <!-- TABLE 3: FINAL INSTALLED NOZZLE CONFIGURATION -->
-      <div class="space-y-2 pt-2 border-t border-zinc-800/60">
-        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-emerald-400 font-sans">
-          📋 Target Nozzle Configuration (Cylinders 1–6)
-        </h4>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
-            <thead>
-              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
-                <th class="p-2">Cylinder</th>
-                <th class="p-2">Target Nozzle Size</th>
                 <th class="p-2">Original Baseline</th>
                 <th class="p-2">Net Adjustment</th>
-                <th class="p-2">Origin / Source</th>
+                <th class="p-2">Tuning Status / Notes</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0285</td><td class="p-2 text-cyan-300">+.0005 (Enriched)</td><td class="p-2 text-zinc-300">Relocated from Cyl 2</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-emerald-400 font-bold">.0280</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-cyan-300">-.0010 (Enriched vs .0265)</td><td class="p-2 text-emerald-300">Hangar Inventory (ex-Cyl 5)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-emerald-400 font-bold">.0275</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">0.0000 (Unchanged)</td><td class="p-2 text-zinc-400">Retained Baseline</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-emerald-400 font-bold">.0260</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-amber-300">Inventory (.026)</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0280</td><td class="p-2 text-cyan-300">+.0010 (Enriched)</td><td class="p-2 text-cyan-300">NEW Restrictor</td></tr>
-              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2 text-emerald-400 font-bold">.0270</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-amber-300">NEW Restrictor</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 1</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0285</td><td class="p-2 text-cyan-300">+.0005 (Enriched)</td><td class="p-2 text-zinc-400">Core Pack Anchor (~11.3 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 2</td><td class="p-2 text-emerald-400 font-bold">.0280</td><td class="p-2 text-zinc-400">.0290</td><td class="p-2 text-cyan-300">-.0010 (Enriched vs .0265)</td><td class="p-2 text-emerald-400">Aligned with Pack (~11.5 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 3</td><td class="p-2 text-emerald-400 font-bold">.0275</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-zinc-400">0.0000 (Unchanged)</td><td class="p-2 text-zinc-400">Baseline Anchor (~11.2 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 4</td><td class="p-2 text-emerald-400 font-bold">.0260</td><td class="p-2 text-zinc-400">.0265</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-zinc-400">Aligned Pack Anchor (~11.6 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 5</td><td class="p-2 text-emerald-400 font-bold">.0290</td><td class="p-2 text-zinc-400">.0280</td><td class="p-2 text-cyan-300">+.0010 (Enriched)</td><td class="p-2 text-zinc-400">Core Pack Anchor (~11.2 GPH)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">Cylinder 6</td><td class="p-2 text-emerald-400 font-bold">.0270</td><td class="p-2 text-zinc-400">.0275</td><td class="p-2 text-amber-300">-.0005 (Restricted)</td><td class="p-2 text-zinc-400">Restricted Anchor (~11.1 GPH)</td></tr>
             </tbody>
           </table>
         </div>
+      </div>
+
+      <!-- TABLE 2: HANGAR TOOLBOX SPARE RESTRICTOR INVENTORY -->
+      <div class="space-y-2 pt-2 border-t border-zinc-800/60">
+        <h4 class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-400 font-sans">
+          🧰 Hangar Toolbox Spare Restrictor Inventory
+        </h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+            <thead>
+              <tr class="bg-zinc-950 border-b border-zinc-800 text-zinc-400 uppercase text-[11px]">
+                <th class="p-2">Quantity</th>
+                <th class="p-2">Nozzle Orifice Size</th>
+                <th class="p-2">Status / Notes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800/60 text-zinc-200">
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">1</td><td class="p-2 text-cyan-300 font-bold">.0300</td><td class="p-2 text-zinc-400">Spare In Inventory</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">2</td><td class="p-2 text-cyan-300 font-bold">.0285</td><td class="p-2 text-zinc-400">Spares In Inventory (Includes ex-Cyl 1 baseline)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">1</td><td class="p-2 text-cyan-300 font-bold">.0270</td><td class="p-2 text-zinc-400">Spare In Inventory (Removed from Cyl 2 in Round 3)</td></tr>
+              <tr class="hover:bg-zinc-800/40"><td class="p-2 font-bold text-white">1</td><td class="p-2 text-cyan-300 font-bold">.0265</td><td class="p-2 text-zinc-400">Spare In Inventory (Removed from Cyl 2 on 11/18/2026)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-[11px] text-zinc-400 italic font-mono">*Total Accounted: 6 Installed on Engine + 5 Spares in Toolbox = 11 Total Nozzles.</p>
       </div>
 
     </div>
